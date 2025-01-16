@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: 'Montserrat' , 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.my-card .ant-card-body {
+  padding: 0 !important;
+}
+.my-card {
+  border-radius: 5px !important;
+}
+.login-wrapper {
+  background:#12895f;
+  height: 100vh;
+  padding: 0 20px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-card {
+  max-width: 400px;
+  width: auto;
+  border-radius: 20px !important;
+  text-align: center;
+  padding: 20px !important;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Montserrat';
+}
+.login-subTitle{
+  font-weight: 400;
+  font-family: 'Montserrat';
+}
+.ant-input.ant-input-status-success::placeholder{
+  font-weight: 400;
+  font-family: 'Montserrat';
+}
+.login-footer span{
+  font-weight: 400;
+  font-family: 'Montserrat';
+  color:#C7C0C3;
+}
+
+.forgot-password {
+  float: right;
+  color: #12895f;
+}
+
+.login-footer {
+  margin-top: 10px;
+  font-size: 12px;
+}
