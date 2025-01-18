@@ -67,18 +67,20 @@ export const configLight = {
         bodyBg: "#F6F8FF"
     },
     Menu: {
-        itemBg: "rgb(255, 255, 255)",
+        itemBg: "rgb(255, 255, 255, 1)",
         itemColor: "rgb(81, 90, 100)",
+        darkSubMenuItemBg:"rgba(255,255,255,0)",
         itemActiveBg: "rgb(244, 250, 239)",
         itemHoverBg: "rgb(244, 250, 239)",
         itemSelectedBg: "#76BC33",
         itemSelectedColor: "#FFFFFF",
         groupTitleColor: "rgb(81, 90, 100)",
-        subMenuItemBg: "rgba(255, 255, 255, 0)",
+        subMenuItemBg: "rgba(255,255,255, 1)",
         activeBarBorderWidth: 8,
         collapsedIconSize: 25,
         iconSize: 18,
         itemHoverColor: "rgb(118, 188, 51)",
+        borderRadiusLG:0
     },
     Dropdown: {
         colorPrimary: "rgb(81, 90, 100)",
@@ -205,17 +207,20 @@ export const configDark = {
     },
     Menu: {
         itemBg: "#25293C",
+        darkSubMenuItemBg:"rgba(255,255,255,0)",
         itemColor: "rgb(222, 222, 230)",
         itemActiveBg: "rgb(42, 57, 54)",
         itemHoverBg: "rgb(42, 57, 54)",
         itemSelectedBg: "#76BC33",
         itemSelectedColor: "#FFFFFF",
         groupTitleColor: "rgb(222, 222, 230)",
-        subMenuItemBg: "#25293C",
+        subMenuItemBg: "rgba(255,255,255, 1)",
         activeBarBorderWidth: 8,
         collapsedIconSize: 25,
         iconSize: 18,
-        itemHoverColor: "rgb(118, 188, 51)"
+        itemHoverColor: "rgb(118, 188, 51)",
+        borderRadiusLG:0
+
     },
     Dropdown: {
         colorPrimary: "rgb(222, 222, 230)",

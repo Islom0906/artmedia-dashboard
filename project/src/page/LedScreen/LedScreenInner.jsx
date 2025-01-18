@@ -332,7 +332,7 @@ const LedScreenInner = () => {
                                     </Row>
                                 </Col>
                                 <Col xs={24} sm={24} md={12} lg={12} xl={6}   >
-                                    <Card bordered={false}  className="criclebox h-full" style={{height:'100%',background:'#12895f', display:'flex', alignItems: 'center' , justifyContent:'center' }} >
+                                    <Card bordered={false}  className="criclebox h-full criclebox-clip-path" style={{height:'100%',background:'#12895f', display:'flex', alignItems: 'center' , justifyContent:'start' }} >
                                         <div style={{display: 'flex',   gap:10, alignItems: 'center'}}>
                                             <Title level={2} style={{color:'white', marginBottom:0}}>OTS <sub style={{fontSize:12 , fontWeight:300}}>(в месяц)</sub></Title>
                                             <Tooltip
@@ -347,11 +347,11 @@ const LedScreenInner = () => {
                                         </div>
 
 
-                                        <Title level={3} style={{fontSize:12, color:'white'}}>
+                                        <Title level={3} style={{fontSize:20,marginTop:0, color:'white'}}>
                                             {getByIdLedScreenStatistics?.statistics?.allViews}
 
                                         </Title>
-                                        <Title level={3} style={{fontSize:12, color:'white'}}>
+                                        <Title level={3} style={{fontSize:20,marginTop:0, color:'white'}}>
                                             Нв {getByIdLedScreenStatistics?.statistics?.nightVision}
                                         </Title>
                                     </Card>

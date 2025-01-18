@@ -248,7 +248,14 @@ const LedScreenPostEdit = () => {
 
     };
 
-
+    const checkFormat = (file) => {
+        const isValidFormat = ['application/pdf'].includes(file.type);
+        if (!isValidFormat) {
+            message.error('Пожалуйста, загружайте только файлы в формате pdf.');
+            return Upload.LIST_IGNORE;
+        }
+        return true;
+    }
 
 
     return (
