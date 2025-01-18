@@ -1,8 +1,8 @@
 import React, {useEffect, useMemo, useState} from "react";
-import {Row, Col, Typography, Button, Card, Drawer, Space,Tooltip,Divider} from "antd";
+import {Row, Col, Typography, Button, Card, Drawer, Space, Tooltip, Divider, Select} from "antd";
 // import './HomeApp.css'
 import {FieldTimeOutlined, PlusOutlined} from "@ant-design/icons";
-import {BsArrowsFullscreen} from "react-icons/bs";
+import {BsArrowsFullscreen, BsPercent} from "react-icons/bs";
 import {MdOutlineScreenshotMonitor} from "react-icons/md";
 import {IoMdTime} from "react-icons/io";
 import {RiPassPendingLine} from "react-icons/ri";
@@ -11,6 +11,9 @@ import {FaLocationDot} from "react-icons/fa6";
 import {BarChart, PieChart, RefererChart} from "../../components";
 import {useNavigate, useParams} from "react-router-dom";
 import {useGetByIdQuery} from "../../service/query/Queries";
+import {GoNumber} from "react-icons/go";
+import {CiCalendarDate} from "react-icons/ci";
+import {IoCalendarNumberOutline} from "react-icons/io5";
 
 const { Title , Text } = Typography;
 
@@ -24,6 +27,7 @@ const LedScreenInner = () => {
     const [isPercentage, setIsPercentage] = useState(false);
     const [isDaily , setIsDaily] = useState(false);
     const togglePercentage = () => setIsPercentage((prev) => !prev);
+    const toggleIsDaily = () => setIsDaily((prev) => !prev);
     const { id } = useParams();
     const navigate = useNavigate()
     const {
@@ -75,46 +79,57 @@ const LedScreenInner = () => {
         }
     }, []);
 
+    console.log(isDaily)
 
 
 
 
     const TimeViews = useMemo(() =>{
+        const a= getByIdLedScreenStatistics?.statistics?.timeViews
+
         const  dataTimeViews= [
-            { value: getByIdLedScreenStatistics?.statistics?.timeViews?.workingDay, name: 'Рабочий дни' },
-            { value: getByIdLedScreenStatistics?.statistics?.timeViews?.offDay, name: 'Выходные дни' },
-            { value: getByIdLedScreenStatistics?.statistics?.timeViews?.nightVision, name: 'Ночное время' },
+            { value:isPercentage ? a?.workingDayPercent : a?.workingDay, name: 'Рабочий дни' },
+            { value:isPercentage ? a?.offDayPercent: a?.offDay, name: 'Выходные дни' },
+            { value:isPercentage ? a?.nightVisionPercent: a?.nightVision, name: 'Ночное время' },
         ]
 
         return dataTimeViews
     } , [getByIdLedScreenStatistics ,isPercentage])
     const AgeViews = useMemo(() =>{
+
+        const a =getByIdLedScreenStatistics?.statistics?.age
+
         const  dataAgeViews= [
-            { value: getByIdLedScreenStatistics?.statistics?.age?.young, name: '0-16 ' },
-            { value: getByIdLedScreenStatistics?.statistics?.age?.middleAge, name: '17-60 ' },
-            { value: getByIdLedScreenStatistics?.statistics?.age?.oldAge, name: '61-100 ' },
+            { value: isPercentage ? a?.youngPercent : a?.young  , name: '0-16 ' },
+            { value: isPercentage ? a?.middleAgePercent : a?.middleAge , name: '17-60 ' },
+            { value: isPercentage ?  a?.oldAgePercent :a?.oldAge, name: '61-100 ' },
         ]
         return dataAgeViews
     } , [getByIdLedScreenStatistics ,isPercentage])
     const PassengerViews = useMemo(() =>{
+        const a = getByIdLedScreenStatistics?.statistics?.passenger
+
         const  dataPassengerViews= [
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.auto, name: 'Авто' },
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.bus, name: 'Автобус' },
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.onFoot, name: 'Пеший' },
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.bike, name: 'Велосипед' },
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.otherTransport, name: 'И другие виды транспорта' },
+            { value: isPercentage ? a?.autoPercent : a?.auto, name: 'Авто' },
+            { value: isPercentage ? a?.busPercent : a?.bus, name: 'Автобус' },
+            { value: isPercentage ? a?.onFootPercent : a?.onFoot, name: 'Пеший' },
+            { value: isPercentage ? a?.bikePercent : a?.bike, name: 'Велосипед' },
+            { value: isPercentage ? a?.otherTransportPercent : a?.otherTransport, name: 'И другие виды транспорта' },
         ]
         return dataPassengerViews
-    } , [getByIdLedScreenStatistics ,isPercentage])
+    } , [getByIdLedScreenStatistics ,isPercentage ])
 
 
     const ViewsMonthSeconds = useMemo(() =>{
+
+        const a =getByIdLedScreenStatistics?.statistics?.viewsMonthSeconds
+
         const  dataViewsMonthSeconds= [
-                { value: getByIdLedScreenStatistics?.statistics?.viewsMonthSeconds?.viewSeconds, name: 'Ролик IYB' },
-                { value: getByIdLedScreenStatistics?.statistics?.viewsMonthSeconds?.otherSeconds, name: 'Другие ролики' },
+                { value: isPercentage ? a?.viewSecondsPercent : a?.viewSeconds, name: 'Ролик IYB' },
+                { value: isPercentage ? a?.otherSecondsPercent : a?.otherSeconds, name: 'Другие ролики' },
         ]
         return dataViewsMonthSeconds
-    } , [getByIdLedScreenStatistics ,isPercentage])
+    } , [getByIdLedScreenStatistics , isPercentage ])
 
 
 
@@ -123,35 +138,53 @@ const LedScreenInner = () => {
 
         return {
             labels: a?.map(item => item?.hour),
-            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) : isDaily ? a?.map(item => item?.viewsNumber): a?.map(item => item?.viewsNumberMonth),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) :  a?.map(item => item?.viewsNumberMonth),
+            valuesDaily: a?.map(item => item?.viewsNumberDay)
         };
-    } , [getByIdLedScreenStatistics ,isPercentage])
+    } , [getByIdLedScreenStatistics ,isPercentage , isDaily])
     const workingDaysStatisticData = useMemo( () => {
         const a= getByIdLedScreenStatistics?.statistics?.workingDaysStatistic
         return {
             labels: a?.map(item => item?.hour),
-            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) :  isDaily ? a?.map(item => item?.viewsNumber):a?.map(item => item?.viewsNumberMonth),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) : a?.map(item => item?.viewsNumberMonth),
+            valuesDaily: a?.map(item => item?.viewsNumberDay)
+
         };
-    } , [getByIdLedScreenStatistics])
+    } , [getByIdLedScreenStatistics ,isPercentage ,isDaily])
     const offDaysStatisticInMyVideoData = useMemo( () => {
         const a= getByIdLedScreenStatistics?.statistics?.offDaysStatisticInMyVideo
         return {
             labels: a?.map(item => item?.hour),
-            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) : isDaily ? a?.map(item => item?.viewsNumberMyVideo) :a?.map(item => item?.viewsNumberMonthMyVideo),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) : a?.map(item => item?.viewsNumberMonthMyVideo),
+            valuesDaily: a?.map(item => item?.viewsNumberDayMyVideo)
         };
-    } , [getByIdLedScreenStatistics ,isPercentage])
+    } , [getByIdLedScreenStatistics ,isPercentage , isDaily])
     const workingDaysStatisticInMyVideoData = useMemo( () => {
 
         const a = getByIdLedScreenStatistics?.statistics?.workingDaysStatisticInMyVideo
         return {
             labels: a?.map(item => item?.hour),
-            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) : isDaily ? a?.map(item => item?.viewsNumberMyVideo) : a?.map(item => item?.viewsNumberMonthMyVideo)
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) :  a?.map(item => item?.viewsNumberMonthMyVideo),
+            valuesDaily: a?.map(item => item?.viewsNumberDayMyVideo)
         };
-    } , [getByIdLedScreenStatistics ,isPercentage])
+    } , [getByIdLedScreenStatistics ,isPercentage , isDaily])
 
 
 
-
+    const selectMounth = [
+        { label: 'Январь', value: 'Январь' },
+        { label: 'Февраль', value: 'Февраль' },
+        { label: 'Март', value: 'Март' },
+        { label: 'Апрель', value: 'Апрель' },
+        { label: 'Май', value: 'Май' },
+        { label: 'Июнь', value: 'Июнь' },
+        { label: 'Июль', value: 'Июль' },
+        { label: 'Август', value: 'Август' },
+        { label: 'Сентябрь', value: 'Сентябрь' },
+        { label: 'Октябрь', value: 'Октябрь' },
+        { label: 'Ноябрь', value: 'Ноябрь' },
+        { label: 'Декабрь', value: 'Декабрь' }
+    ];
 
     return (
         <>
@@ -224,7 +257,7 @@ const LedScreenInner = () => {
                                     />
                                 }
                             >
-                                <Button onClick={showDrawer} type="primary" size={"small"}
+                                <Button onClick={showDrawer} type="primary"
                                         style={{position: 'absolute', bottom: '10px', right: '10px',backgroundColor:'#009552',border:'0'}}>
                                     Параметры
                                 </Button>
@@ -242,15 +275,6 @@ const LedScreenInner = () => {
                                     />
                                 }
                             >
-                                {/*<Button onClick={showDrawerLocation} type="primary" size={"small"}*/}
-                                {/*        style={{*/}
-                                {/*            position: 'absolute',*/}
-                                {/*            bottom: '10px',*/}
-                                {/*            right: '10px',*/}
-                                {/*            backgroundColor: '#009552'*/}
-                                {/*        }}>*/}
-                                {/*    Параметры*/}
-                                {/*</Button>*/}
                             </Card>
                         </Col>
                         <Col xs={24} sm={12} md={8}>
@@ -281,14 +305,31 @@ const LedScreenInner = () => {
                         <>
                             <Row gutter={[12, 4]}>
                                 <Col span={24} style={{display: 'flex' , justifyContent: 'space-between', alignItems: 'center'}}>
-                                    <Title level={4}>
-                                        Аналитические данные
-                                    </Title>
-                                    <Button onClick={togglePercentage}>
-                                        {isPercentage ? "Показать обычные значения" : "Показать проценты"}
-                                    </Button>
-                                    <span style={{fontSize:14 , color:'#ccc'}}> {getByIdLedScreenStatistics?.statistics?.month}
-                        </span>
+                                    <Row style={{width:'100%'}} gutter={[12, 4]}>
+                                        <Col span={16}>
+                                            <Title level={4} style={{marginTop:0}}>
+                                                Аналитические данные
+                                            </Title>
+                                        </Col>
+                                        <Col span={8} style={{display:"flex" , alignItems:"center" ,gap:8}}>
+                                            <Button onClick={toggleIsDaily} type={"primary"}>
+                                                {isDaily ? <CiCalendarDate  style={{fontSize:24}} /> : <IoCalendarNumberOutline  style={{fontSize:24}} />}
+                                            </Button>
+                                            <Button onClick={togglePercentage} type={"primary"}>
+                                                {isPercentage ? <GoNumber style={{fontSize:24}} /> : <BsPercent style={{fontSize:24}} />}
+                                            </Button>
+                                            <Select
+                                                style={{
+                                                    width: '100%',
+                                                }}
+                                                defaultValue={getByIdLedScreenStatistics?.statistics?.month}
+                                                disabled={true}
+                                                placeholder='Выберите месяц '
+                                                optionLabelProp='label'
+                                                options={selectMounth}
+                                            />
+                                        </Col>
+                                    </Row>
                                 </Col>
                                 <Col xs={24} sm={24} md={12} lg={12} xl={6}   >
                                     <Card bordered={false}  className="criclebox h-full" style={{height:'100%',background:'#12895f', display:'flex', alignItems: 'center' , justifyContent:'center' }} >
@@ -347,6 +388,7 @@ const LedScreenInner = () => {
                                             subTitle={`Рабочий дни / ${getByIdLedScreenStatistics?.statistics?.workingDayMonth} день`}
                                             isPercentage={isPercentage}
                                             barData={workingDaysStatisticData?.values || []}
+                                            isDailyBarData={workingDaysStatisticData?.valuesDaily || []}
                                         />
 
                                     </Card>
@@ -356,8 +398,10 @@ const LedScreenInner = () => {
                                         <BarChart
                                             dataTime={offDaysStatisticData?.labels || []}
                                             isPercentage={isPercentage}
+                                            isDaily={isDaily}
                                             subTitle={`Суббота, воскресение и дополнительные выходные дни / ${getByIdLedScreenStatistics?.statistics?.offDayMonth} день`}
                                             barData={offDaysStatisticData?.values || []}
+                                            isDailyBarData={offDaysStatisticData?.valuesDaily || []}
                                         />
                                     </Card>
                                 </Col>
@@ -380,9 +424,10 @@ const LedScreenInner = () => {
                                         <BarChart
                                             dataTime={workingDaysStatisticInMyVideoData?.labels || []}
                                             isPercentage={isPercentage}
-                                            title={''}
-                                            subTitle={'Рабочий дни / 19 дней'}
+                                            isDaily={isDaily}
+                                            subTitle={`Рабочий дни / ${getByIdLedScreenStatistics?.statistics?.workingDayMonth} дней`}
                                             barData={workingDaysStatisticInMyVideoData?.values || []}
+                                            isDailyBarData={workingDaysStatisticInMyVideoData?.valuesDaily || []}
                                             footerText={`Все: ${getByIdLedScreenStatistics?.statistics?.allViewsWorkingDayMyVideo}`}
                                         />
                                     </Card>
@@ -394,10 +439,10 @@ const LedScreenInner = () => {
                                             dataTime={offDaysStatisticInMyVideoData.labels || []}
                                             isPercentage={isPercentage}
                                             subTitle={`Суббота, воскресение и дополнительные выходные дни
-                                                ${getByIdLedScreenStatistics?.statistics?.offDayMonth} дней`}
+                                           ${getByIdLedScreenStatistics?.statistics?.offDayMonth} дней`}
                                             barData={offDaysStatisticInMyVideoData?.values || []}
+                                            isDailyBarData={offDaysStatisticInMyVideoData?.valuesDaily || []}
                                             footerText={`Все: ${getByIdLedScreenStatistics?.statistics?.allViewsOffDayMyVideo}`}
-
                                         />
                                     </Card>
                                 </Col>

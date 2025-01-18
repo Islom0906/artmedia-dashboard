@@ -1,21 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import * as echarts from "echarts";
 
-const RefererChart = ({ data, isPercent = false, title = '' }) => {
+const RefererChart = ({ data, isPercentage, title}) => {
     const chartRef = useRef(null);
 
     useEffect(() => {
         const chartInstance = echarts.init(chartRef.current);
-
-        // Foizni hisoblash
-        const totalSum = data.reduce((sum, item) => sum + item.value, 0);
-        const displayData = isPercent
-            ? data.map((item) => ({
-                ...item,
-                value: ((item.value / totalSum) * 100).toFixed(2), // Foizni hisoblash
-                rawValue: item.value, // Asl qiymatni saqlash uchun
-            }))
-            : data;
 
         const option = {
             title: {
@@ -30,9 +20,11 @@ const RefererChart = ({ data, isPercent = false, title = '' }) => {
             tooltip: {
                 trigger: 'item',
                 formatter: (params) =>
-                    isPercent
-                        ? `${params.name}: ${params.value}% (${params.data.rawValue})`
-                        : `${params.name}: ${params.value}`,
+                    isPercentage
+                        ? `${params.value}%`
+                        : params.value
+                            .toLocaleString("ru-RU")
+                            .replace(",", " "),
             },
             legend: {
                 icon: "circle",
@@ -46,16 +38,25 @@ const RefererChart = ({ data, isPercent = false, title = '' }) => {
                 {
                     type: 'pie',
                     radius: '80%',
-                    data: displayData,
+                    data: data.map(item => ({
+                        ...item,
+                        rawValue: item.value,
+                        value: isPercentage ? item.value : item.value ,
+                    })),
                     center: ['50%', '60%'],
                     label: {
-                        show: true, // Show labels
-                        position: 'inside', // Position labels inside each slice
-                        formatter: isPercent ? `{d}%` : `{c}`, // Display percentage or value
-                        fontSize: 9, // Font size for the percentage
+                        show: true,
+                        position: 'inside',
+                        formatter: (params) =>
+                            isPercentage
+                                ? `${params.value}%`
+                                : params.value
+                                    .toLocaleString("ru-RU")
+                                    .replace(",", " "),
+                        fontSize: 11,
                     },
                     labelLine: {
-                        show: false, // Hide label lines
+                        show: false,
                     },
                     emphasis: {
                         itemStyle: {
@@ -79,7 +80,7 @@ const RefererChart = ({ data, isPercent = false, title = '' }) => {
             chartInstance.dispose();
             window.removeEventListener('resize', handleResize);
         };
-    }, [data, isPercent, title]);
+    }, [data, isPercentage, title]);
 
     return <div ref={chartRef} style={{ height: 270, width: '100%' }} />;
 };

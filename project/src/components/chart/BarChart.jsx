@@ -5,15 +5,69 @@ const BarChart = ({
                       dataTime,
                       subTitle,
                       barData,
-    isDailyBarData,
+                      isDailyBarData,
                       color,
+                      dailyColor, // Ikkala seriya uchun alohida rang
                       footerText,
-                      isPercentage,isDaily
+                      isPercentage,
+                      isDaily,
                   }) => {
     const chartRef = useRef(null);
 
     useEffect(() => {
         const chartInstance = echarts.init(chartRef.current);
+
+        const series = isDaily
+            ? [
+                {
+                    data: isDailyBarData,
+                    type: "bar",
+                    itemStyle: {color: '#12895f' },
+                    label: {
+                        show: true,
+                        position: "inside",
+                        align: "center",
+                        textStyle: { fontSize: 9 },
+                        verticalAlign: "middle",
+                        rotate: 90,
+                        formatter: (params) =>
+                            isPercentage
+                                ? `${params.value}%`
+                                : params.value
+                                    .toLocaleString("ru-RU")
+                                    .replace(",", " "),
+                    },
+                    animation: true,
+                    animationDuration: 1500,
+                    animationEasing: "elasticOut",
+                    animationDelay: (index) => index * 200,
+                },
+            ]
+            : [
+                {
+                    data: barData,
+                    type: "bar",
+                    itemStyle: { color: '#12895f' },
+                    label: {
+                        show: true,
+                        position: "inside",
+                        align: "center",
+                        textStyle: { fontSize: 9 },
+                        verticalAlign: "middle",
+                        rotate: 90,
+                        formatter: (params) =>
+                            isPercentage
+                                ? `${params.value}%`
+                                : params.value
+                                    .toLocaleString("ru-RU")
+                                    .replace(",", " "),
+                    },
+                    animation: true,
+                    animationDuration: 1500,
+                    animationEasing: "elasticOut",
+                    animationDelay: (index) => index * 200,
+                },
+            ];
 
         const option = {
             title: {
@@ -32,7 +86,7 @@ const BarChart = ({
                 axisLabel: { rotate: 50, fontSize: 10 },
             },
             yAxis: {
-                show: false,
+                show: true,
                 type: "value",
                 axisLabel: {
                     formatter: (value) =>
@@ -41,56 +95,7 @@ const BarChart = ({
                             : value.toLocaleString("ru-RU").replace(",", " "),
                 },
             },
-            series: [
-                {
-                    show: !isDaily,
-                    data: barData,
-                    type: "bar",
-                    itemStyle: { color },
-                    label: {
-                        show: true,
-                        position: "inside",
-                        align: "center",
-                        textStyle: { fontSize: 9 },
-                        verticalAlign: "middle",
-                        rotate: 90,
-                        formatter: (params) =>
-                            isPercentage
-                                ? `${params.value}%`
-                                : params.value
-                                    .toLocaleString("ru-RU")
-                                    .replace(",", " "),
-                    },
-                    animation: true,
-                    animationDuration: 1500,
-                    animationEasing: "elasticOut",
-                    animationDelay: (index) => index * 200,
-                },
-                {
-                    show: !isDaily,
-                    data: isDailyBarData,
-                    type: "bar",
-                    itemStyle: { color },
-                    label: {
-                        show: true,
-                        position: "inside",
-                        align: "center",
-                        textStyle: { fontSize: 9 },
-                        verticalAlign: "middle",
-                        rotate: 90,
-                        formatter: (params) =>
-                            isPercentage
-                                ? `${params.value}%`
-                                : params.value
-                                    .toLocaleString("ru-RU")
-                                    .replace(",", " "),
-                    },
-                    animation: true,
-                    animationDuration: 1500,
-                    animationEasing: "elasticOut",
-                    animationDelay: (index) => index * 200,
-                },
-            ],
+            series,
         };
 
         const handleResize = () => chartInstance.resize();
@@ -103,7 +108,7 @@ const BarChart = ({
             chartInstance.dispose();
             window.removeEventListener("resize", handleResize);
         };
-    }, [dataTime, barData, color, subTitle, isPercentage]);
+    }, [dataTime, barData, isDailyBarData, color, dailyColor, subTitle, isPercentage, isDaily]);
 
     return (
         <div style={{ textAlign: "center" }}>
