@@ -11,8 +11,10 @@ const AppPage = () => {
     return (
         <Content
             style={{
-                padding: 10,
+                padding: 20,
                 overflowY: "scroll",
+                height:'100%',
+                overflowX:'hidden !import'
             }}
         >
             <Routes>

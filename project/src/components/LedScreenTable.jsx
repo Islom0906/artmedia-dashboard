@@ -1,13 +1,20 @@
 import {Button, Popconfirm, Space, Table ,Image} from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
+import {FaRegEye} from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
 
 const HouseTable = ({data,deleteHandle ,editHandle}) => {
+    const navigate = useNavigate();
+
     const Delete = async (id) => {
         deleteHandle('/location',id)
     };
     const Edit = (id) => {
         editHandle('led-screen',id)
+    };
+    const handleUserProfile = (id) => {
+        navigate(`/led-screen/${id}`);
     };
 
     const columns = [
@@ -19,9 +26,9 @@ const HouseTable = ({data,deleteHandle ,editHandle}) => {
         },
         {
             title: 'Регион',
-            dataIndex: 'passportID',
-            id: 'passportID',
-            render: (passportID) => <p>{passportID}</p>,
+            dataIndex: 'region',
+            id: 'region',
+            render: (region) => <p>{region}</p>,
         },
         {
             title: 'Pixel экрана',
@@ -34,15 +41,19 @@ const HouseTable = ({data,deleteHandle ,editHandle}) => {
             id: 'action',
             render: (_, record) => (
                 <Space size={20}>
+                    <Button onClick={() => handleUserProfile(record?._id)} type="primary">
+                        <FaRegEye />
+                    </Button>
                     <Button
-                        onClick={() => Edit(record._id)}
+                        onClick={() => Edit(record?._id)}
                         type='primary'
                         icon={<EditOutlined />}>
                     </Button>
                     <Popconfirm
                         title={'Вы уверены, что хотите удалить этот экран?'}
                         description={'удалить элемент '}
-                        onConfirm={() => Delete(record._id)}>
+                        danger
+                        onConfirm={() => Delete(record?._id)}>
                         <Button type='danger' icon={<DeleteOutlined />}>
                         </Button>
                     </Popconfirm>

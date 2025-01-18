@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Row, Col, Typography, Button, Card, Drawer, Space,Tooltip,Divider} from "antd";
 // import './HomeApp.css'
-import {FieldTimeOutlined} from "@ant-design/icons";
+import {FieldTimeOutlined, PlusOutlined} from "@ant-design/icons";
 import {BsArrowsFullscreen} from "react-icons/bs";
 import {MdOutlineScreenshotMonitor} from "react-icons/md";
 import {IoMdTime} from "react-icons/io";
@@ -9,43 +9,49 @@ import {RiPassPendingLine} from "react-icons/ri";
 import {FaQuestion} from "react-icons/fa";
 import {FaLocationDot} from "react-icons/fa6";
 import {BarChart, PieChart, RefererChart} from "../../components";
+import {useNavigate, useParams} from "react-router-dom";
+import {useGetByIdQuery} from "../../service/query/Queries";
 
 const { Title , Text } = Typography;
 
 
 
-const count = [
-    {
-        today: "Pixel экрана",
-        title: "1800 x 700 ",
-        icon: <MdOutlineScreenshotMonitor style={{fontSize:24}} />,
-    },
-    {
-        today: "Размер экрана",
-        title: "18 x 7 M",
-        icon: < BsArrowsFullscreen style={{fontSize:24}} />,
-    },
-    {
-        today: " Bремя трансляции (в день)",
-        title: "7:00 - 23:00",
-        icon: <IoMdTime style={{fontSize:24}} />,
-    },
-    {
-        today: " Паспорт объекта",
-        title: "2793",
-        icon: <RiPassPendingLine style={{fontSize:24}}  />,
-    },
-];
 
-const LedScreen = () => {
+
+const LedScreenInner = () => {
+    const { id } = useParams();
+    const navigate = useNavigate()
+    const {
+        data: getByIdLedScreen,
+        refetch: refetchGetByIdLedScreen,
+        isLoading: isLoadingGetByIdLedScreen,
+    } = useGetByIdQuery(false, "innerLedScreen", id, '/location/');
+    const {
+        data: getByIdStatistics,
+        refetch: refetchGetByIdStatistics,
+        isLoading: isLoadingGetByIdStatistics,
+    } = useGetByIdQuery(false, "statistics", id, '/statistics');
+    const addArticle = () => {
+        navigate(`/led-screen/statistics-add?selectID=${getByIdLedScreen?._id}&toHour=${getByIdLedScreen?.toHour}&fromHour=${getByIdLedScreen?.fromHour}`);
+    };
+
+
+    useEffect(() => {
+        if(id) {
+            refetchGetByIdLedScreen();
+            refetchGetByIdStatistics()
+        }
+    }, []);
+
+
     const [visible, setVisible] = useState(false);
     const [visibleLocation, setVisibleLocation] = useState(false);
     const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+    const [isPercentage, setIsPercentage] = useState(false);
 
+    const togglePercentage = () => setIsPercentage((prev) => !prev);
     const showDrawer = () => setVisible(true);
     const hideDrawer = () => setVisible(false);
-    const hideDrawerLocation = () => setVisibleLocation(false);
-    const showDrawerLocation = () => setVisibleLocation(true);
     const  dataRefererChart1= [
         { value: 2013077, name: 'Рабочий дни' },
         { value: 856120, name: 'Выходные дни' },
@@ -79,86 +85,92 @@ const LedScreen = () => {
     ];
 
 
-    return (
 
+    const info = useMemo(() => {
+         const count = [
+            {
+                today: "Pixel экрана",
+                title: getByIdLedScreen?.screenPixel,
+                icon: <MdOutlineScreenshotMonitor style={{fontSize:24 , color:"white"}} />,
+            },
+            {
+                today: "Размер экрана",
+                title: "18 x 700 M",
+                icon: < BsArrowsFullscreen style={{fontSize:24 , color:"white"}} />,
+            },
+            {
+                today: " Bремя трансляции (в день)",
+                title: getByIdLedScreen?.toHour - getByIdLedScreen?.fromHour,
+                icon: <IoMdTime style={{fontSize:24 , color:"white"}} />,
+            },
+            {
+                today: " Паспорт объекта",
+                title: getByIdLedScreen?.passportID,
+                icon: <RiPassPendingLine style={{fontSize:24 , color:"white"}}  />,
+            },
+        ];
+        return count
+
+    } , [getByIdLedScreen])
+
+    useEffect(() => {
+
+    } , [getByIdLedScreen])
+
+    return (
         <>
             <Drawer
                 className="settings-drawer"
                 mask={true}
                 width={360}
                 onClose={hideDrawer}
-                visible={visible}
+                open={visible}
                 placement={'right'}
             >
                 <div layout="vertical">
-                    <div className="header-top">
                         <Title level={4}>
                             Информация
                         </Title>
-                    </div>
-                    <Row className="rowgap-vbox" gutter={[24, 0]}>
-                        {count.map((c, index) => (
+                    <Row  gutter={[12 , 12]}>
+                        {info.map((c, index) => (
                             <Col
                                 key={index}
                                 span={24}
-                                className="mb-24"
                             >
-                                <Card bordered={false} className="criclebox ">
-                                    <div className="number">
+                                <Card bordered={false} style={{padding:5}} className={'info-card'} >
                                         <Row align="middle" gutter={[24, 0]}>
                                             <Col xs={18}>
-                                                <span>{c.today}</span>
-                                                <Title level={4}>
-                                                    {c.title} <small className={c.bnb}>{c.persent}</small>
+                                                <Title style={{margin:0 ,color:"#666"}} level={5}>{c.today}</Title>
+                                                <Title style={{marginTop:8}} level={4}>
+                                                    {c.title}
                                                 </Title>
                                             </Col>
                                             <Col xs={6}>
                                                 <div className="icon-box" style={{background:"#12895f"}}>{c.icon}</div>
                                             </Col>
                                         </Row>
-                                    </div>
                                 </Card>
                             </Col>
                         ))}
                     </Row>
-
-
-                </div>
-            </Drawer>
-            <Drawer
-                className="settings-drawer"
-                mask={true}
-                width={360}
-                onClose={hideDrawerLocation}
-                visible={visibleLocation}
-                placement={'right'}
-            >
-                <div layout="vertical">
-                    <div className="header-top">
-                        <Title level={4}>
-                            Адрес
-                        </Title>
-                    </div>
-                    <Space direction="vertical" size={10}>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.31094043489!2d69.2821431758764!3d41.34559477130517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b021d0567c7%3A0xe4fb491f60e7b456!2sTeleminora%20Toshkent.!5e0!3m2!1sru!2s!4v1736672172402!5m2!1sru!2s"
-                            style={{width: "100%", height: "250px", border: "none"}} allowFullScreen="" loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"></iframe>
-                        <Text>
-                            г.Ташкент, Чиланзарский район,
-                            Пересечение ул.И.Каримова и ул.Фуркада. (перекресток)
-                        </Text>
-                    </Space>
-
                 </div>
             </Drawer>
             <div className="layout-content" >
                 <Row>
-                    <Col xs={24} sm={24} md={20}  lg={20}>
+                    <Col span={16}>
                         <Title level={4} style={{marginBottom: 12}}>
-                            <FaLocationDot style={{fontSize:'16px'}}/>  г.Ташкент, Чиланзарский район,
-                            Пересечение ул.И.Каримова и ул.Фуркада. (перекресток)
+                            <FaLocationDot style={{fontSize:'16px'}}/>  {getByIdLedScreen?.address}
                         </Title>
+
+                    </Col>
+                    <Col span={8}>
+                        <Button
+                            type='primary'
+                            icon={<PlusOutlined/>}
+                            style={{width: '100%'}}
+                            onClick={addArticle}>
+                             Добавить
+                        </Button>
                     </Col>
                     <Divider className={'home-divider'}/>
                 </Row>
@@ -172,8 +184,8 @@ const LedScreen = () => {
                                 cover={
                                     <img
                                         style={{width: '100%', height: '300px', objectFit: 'cover' }}
-                                        alt="online"
-                                        src="/Безымянный-3.jpg"
+                                        alt="Video"
+                                        src={`${process.env.REACT_APP_API_URL}${getByIdLedScreen?.image?.path}`}
                                     />
                                 }
                             >
@@ -191,7 +203,7 @@ const LedScreen = () => {
                                     <img
                                         style={{width: '100%', height: '300px', objectFit: 'cover'}}
                                         alt="online"
-                                        src="/Безымянный-001.jpg"
+                                        src={`${process.env.REACT_APP_API_URL}${getByIdLedScreen?.locationImage?.path}`}
                                     />
                                 }
                             >
@@ -219,7 +231,7 @@ const LedScreen = () => {
                                             controls
                                         >
                                             <source
-                                                src="/IMG_3593.mp4"
+                                                src={`${process.env.REACT_APP_API_URL}${getByIdLedScreen?.image?.path}`}
                                                 type="video/mp4"
                                             />
                                             Sizning brauzeringiz videoni qo‘llab-quvvatlamaydi.
@@ -235,6 +247,9 @@ const LedScreen = () => {
                             <Title level={4}>
                                 Аналитические данные
                             </Title>
+                            <Button onClick={togglePercentage}>
+                                {isPercentage ? "Показать обычные значения" : "Показать проценты"}
+                            </Button>
                             <span style={{fontSize:14 , color:'#ccc'}}> за период
 
                         01.12.2024 - 31.12.2024 г.
@@ -268,17 +283,18 @@ const LedScreen = () => {
 
                         <Col xs={24} sm={24} md={12} lg={12} xl={6} >
                             <Card bordered={false} className="criclebox h-full" style={{height:'100%' }}>
-                                <RefererChart data={dataRefererChart1} />
+                                <RefererChart isPercentage={isPercentage} data={dataRefererChart1} />
                             </Card>
                         </Col>
                         <Col xs={24} sm={24} md={12} lg={12} xl={6} >
                             <Card bordered={false} className="criclebox h-full" style={{height:'100%' }} >
-                                <PieChart data={dataPieChart} Title={'Возраст'} />
+
+                                <PieChart data={dataPieChart} Title={'Возраст'} isPercentage={isPercentage} />
                             </Card>
                         </Col>
                         <Col xs={24} sm={24} md={12} lg={12} xl={6} >
                             <Card bordered={false} className="criclebox h-full" style={{height:'100%' }}>
-                                <RefererChart data={dataRefererChart2} />
+                                <RefererChart isPercentage={isPercentage} data={dataRefererChart2} />
                             </Card>
                         </Col>
                     </Row>
@@ -295,6 +311,7 @@ const LedScreen = () => {
                                     dataTime={dataTime}
                                     title={''}
                                     subTitle={'Рабочий дни / 19 день'}
+                                    isPercentage={isPercentage}
                                     barData={[
                                         110246, 210883, 130367, 45817, 53493, 170628,
                                         190768, 170628, 47831, 59915, 110246, 311551,
@@ -307,6 +324,7 @@ const LedScreen = () => {
                             <Card bordered={false} className="criclebox h-full" style={{ height: '100%' }}>
                                 <BarChart
                                     dataTime={dataTime}
+                                    isPercentage={isPercentage}
                                     title={''}
                                     subTitle={'Суббота, воскресение и дополнительные выходные дни / 12 день'}
                                     barData={[8558, 17126, 25682, 42806, 68486 , 68486, 51374, 42806, 77054, 68486, 85610, 94178, 102733, 42805, 34249, 25681]}
@@ -323,7 +341,7 @@ const LedScreen = () => {
 
                         <Col xs={24} sm={24} md={12} lg={6}>
                             <Card bordered={false} className="criclebox h-full" style={{height:'100%' }}>
-                                <RefererChart data={dataRefererChart5} />
+                                <RefererChart isPercentage={isPercentage} data={dataRefererChart5} />
                             </Card>
                         </Col>
 
@@ -331,6 +349,7 @@ const LedScreen = () => {
                             <Card bordered={false} className="criclebox h-full" style={{ height: '100%' }}>
                                 <BarChart
                                     dataTime={dataTime}
+                                    isPercentage={isPercentage}
                                     title={''}
                                     subTitle={'Рабочий дни / 19 дней'}
                                     barData={[4630, 8857, 5475, 1924, 2247, 7166, 8012, 7166, 2009, 2516, 4630, 13085, 10548, 2939, 2093 , 1248]}
@@ -341,6 +360,7 @@ const LedScreen = () => {
                             <Card bordered={false} className="criclebox h-full" style={{ height: '100%' }}>
                                 <BarChart
                                     dataTime={dataTime}
+                                    isPercentage={isPercentage}
                                     title={''}
                                     subTitle={'Суббота, воскресение и дополнительные выходные дни\n\n' +
                                         '12 дней'}
@@ -401,4 +421,4 @@ const LedScreen = () => {
     );
 };
 
-export default LedScreen;
+export default LedScreenInner;

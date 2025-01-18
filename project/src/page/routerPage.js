@@ -1,5 +1,5 @@
 import {
-    Dashboard , LedScreenPostEdit
+    Dashboard, LedScreenInner, LedScreenInnerPostEdit, LedScreenPostEdit
 } from './index'
 
 import {RxDashboard} from "react-icons/rx";
@@ -23,6 +23,19 @@ export const samplePagesConfigs = [
         element: LedScreenPostEdit,
         isBackground: false
     },
+    {
+        key: 4,
+        path: `/led-screen/:id`,
+        element: LedScreenInner,
+        isBackground: false
+    },
+    {
+        key: 5,
+        path: `/led-screen/statistics-add`,
+        element: LedScreenInnerPostEdit,
+        isBackground: false
+    },
+    // /led-screen/statistics-add
 
     // {
     //     key: 12321232312312312,

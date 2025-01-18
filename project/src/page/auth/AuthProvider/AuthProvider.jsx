@@ -9,38 +9,38 @@ const AuthProvider = ({children}) => {
     const navigate=useNavigate()
     const dispatch=useDispatch()
 
-    // axios.interceptors.response.use(
-    //     (res) => res,
-    //     async (err) => {
-    //         const getRefToken = localStorage.getItem('refToken')
-    //
-    //         if (err.response.status === 401 && err.response.config.method !== "get" && getRefToken) {
-    //             try {
-    //                 const refreshTokenData = {
-    //                     refresh: getRefToken
-    //                 }
-    //                 const newToken = await apiService.postData('/users/user/token/refresh/', refreshTokenData);
-    //                 localStorage.setItem('token', newToken.access)
-    //
-    //                 const originalRequest = err.config;
-    //                 originalRequest.headers.Authorization = `Bearer ${newToken.access}`
-    //                 axios.defaults.headers.common['Authorization'] = `Bearer ${newToken.access}`;
-    //                 return axios(originalRequest)
-    //             } catch (refreshError) {
-    //                 return Promise.reject(refreshError);
-    //             }
-    //         }else if (err.response.status === 401){
-    //             navigate('/login')
-    //             dispatch(authData({
-    //                 user: null,
-    //                 isLoading: false,
-    //                 isAuthenticated: false,
-    //             }))
-    //
-    //         }
-    //         return Promise.reject(err);
-    //     },
-    // );
+    axios.interceptors.response.use(
+        (res) => res,
+        async (err) => {
+            const getRefToken = localStorage.getItem('refToken')
+
+            if (err.response.status === 401 && err.response.config.method !== "get" && getRefToken) {
+                try {
+                    const refreshTokenData = {
+                        refresh: getRefToken
+                    }
+                    const newToken = await apiService.postData('/users/user/token/refresh/', refreshTokenData);
+                    localStorage.setItem('token', newToken.access)
+
+                    const originalRequest = err.config;
+                    originalRequest.headers.Authorization = `Bearer ${newToken.access}`
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${newToken.access}`;
+                    return axios(originalRequest)
+                } catch (refreshError) {
+                    return Promise.reject(refreshError);
+                }
+            }else if (err.response.status === 401){
+                navigate('/login')
+                dispatch(authData({
+                    user: null,
+                    isLoading: false,
+                    isAuthenticated: false,
+                }))
+
+            }
+            return Promise.reject(err);
+        },
+    );
 
     useEffect(() => {
         const token = localStorage.getItem('token');

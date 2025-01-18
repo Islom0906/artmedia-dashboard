@@ -1,5 +1,5 @@
-import React, {useEffect,  useState} from 'react';
-import {Button, Col, DatePicker, Form, message, Row, Select, TimePicker, Upload} from "antd";
+import  {useEffect,  useState} from 'react';
+import {Button, Col,  Form, message, Row, Select, TimePicker, Upload} from "antd";
 import {useLocation} from "react-router-dom";
 
 import dayjs from "dayjs";
@@ -19,22 +19,7 @@ const initialValueForm ={
     passportID:"",
 }
 
-const regionsOfUzbekistan = [
-    { label: 'Андижанская область', value: 'Андижанская область' },
-    { label: 'Бухарская область', value: 'Бухарская область' },
-    { label: 'Джизакская область', value: 'Джизакская область' },
-    { label: 'Кашкадарьинская область', value: 'Кашкадарьинская область' },
-    { label: 'Навоийская область', value: 'Навоийская область' },
-    { label: 'Наманганская область', value: 'Наманганская область' },
-    { label: 'Самаркандская область', value: 'Самаркандская область' },
-    { label: 'Сурхандарьинская область', value: 'Сурхандарьинская область' },
-    { label: 'Сырдарьинская область', value: 'Сырдарьинская область' },
-    { label: 'Ташкентская область', value: 'Ташкентская область' },
-    { label: 'Ташкент', value: 'Ташкент' },
-    { label: 'Ферганская область', value: 'Ферганская область' },
-    { label: 'Хорезмская область', value: 'Хорезмская область' },
-    { label: 'Республика Каракалпакстан', value: 'Республика Каракалпакстан' }
-];
+
 const LedScreenPostEdit = () => {
     const location = useLocation();
     const [fileListProps, setFileListProps] = useState([]);
@@ -83,6 +68,23 @@ const LedScreenPostEdit = () => {
     EditGetById(editLocationRefetch,editId)
     SetInitialValue(form,initialValueForm)
 
+    const regionsOfUzbekistan = [
+        { label: 'Андижанская область', value: 'Андижанская область' },
+        { label: 'Бухарская область', value: 'Бухарская область' },
+        { label: 'Джизакская область', value: 'Джизакская область' },
+        { label: 'Кашкадарьинская область', value: 'Кашкадарьинская область' },
+        { label: 'Навоийская область', value: 'Навоийская область' },
+        { label: 'Наманганская область', value: 'Наманганская область' },
+        { label: 'Самаркандская область', value: 'Самаркандская область' },
+        { label: 'Сурхандарьинская область', value: 'Сурхандарьинская область' },
+        { label: 'Сырдарьинская область', value: 'Сырдарьинская область' },
+        { label: 'Ташкентская область', value: 'Ташкентская область' },
+        { label: 'Ташкент', value: 'Ташкент' },
+        { label: 'Ферганская область', value: 'Ферганская область' },
+        { label: 'Хорезмская область', value: 'Хорезмская область' },
+        { label: 'Республика Каракалпакстан', value: 'Республика Каракалпакстан' }
+    ];
+
     useEffect(() => {
         if (editLocationSuccess) {
             const image = [{
@@ -126,8 +128,8 @@ const LedScreenPostEdit = () => {
             address: value.address,
             passportID: value.passportID,
             image: fileListProps[0]?.uid,
-            locationImage:fileListPropsLocationImage[0].uid,
-            video: fileListPropsVideo[0].uid,
+            locationImage:fileListPropsLocationImage[0]?.uid,
+            video: fileListPropsVideo[0]?.uid,
             screenPixel: value.screenPixel,
             fromHour: dayjs(value.fromHour).format("HH:mm"),
             toHour: dayjs(value.toHour).format("HH:mm"),
@@ -230,7 +232,6 @@ const LedScreenPostEdit = () => {
 
     const onChangeImageVideo = ({fileList: newFileList}) => {
         const formData = new FormData();
-        console.log(newFileList)
         if (fileListPropsVideo.length !== 0 || newFileList.length === 0) {
             form.setFieldsValue({video: []});
             const id = {
@@ -285,8 +286,7 @@ const LedScreenPostEdit = () => {
                                 name={'address'}
                             />
                         </Col>
-
-                        <Col span={24}>
+                        <Col span={12}>
                             <FormInput
                                 required={true}
                                 required_text={'Требуется название паспорт удостоверение личности'}
@@ -294,11 +294,33 @@ const LedScreenPostEdit = () => {
                                 name={'passportID'}
                             />
                         </Col>
+                        <Col span={12}>
+                            <Form.Item
+                                label={'Выберите регионы'}
+                                name={'region'}
+                                rules={[{
+                                    required: true,
+                                    message: 'Выберите регионы'
+                                }]}
+                                wrapperCol={{
+                                    span: 24,
+                                }}
+                            >
+                                <Select
+                                    style={{
+                                        width: '100%',
+                                    }}
+                                    placeholder='Выберите регионы '
+                                    optionLabelProp='label'
+                                    options={regionsOfUzbekistan}
+                                />
+                            </Form.Item>
+                        </Col>
                         <Col span={8}>
                             <Form.Item
                                 label='Картина:'
                                 name={'image'}
-                                rules={[{required: true, message: 'Требуется Картина'}]}
+                                // rules={[{required: true, message: 'Требуется Картина'}]}
                             >
                                 {/*<ImgCrop>*/}
                                 <Upload
@@ -318,7 +340,7 @@ const LedScreenPostEdit = () => {
                             <Form.Item
                                 label='Фото места:'
                                 name={'locationImage'}
-                                rules={[{required: true, message: 'Требуется Фото места'}]}
+                                // rules={[{required: true, message: 'Требуется Фото места'}]}
                             >
                                 {/*<ImgCrop>*/}
                                 <Upload
@@ -338,7 +360,7 @@ const LedScreenPostEdit = () => {
                             <Form.Item
                                 label='Видео:'
                                 name={'video'}
-                                rules={[{required: true, message: 'Требуется Видео'}]}
+                                // rules={[{required: true, message: 'Требуется Видео'}]}
                             >
                                 {/*<ImgCrop>*/}
                                 <Upload
@@ -384,28 +406,7 @@ const LedScreenPostEdit = () => {
                                 />
                             </Form.Item>
                         </Col>
-                        <Col span={12}>
-                            <Form.Item
-                                label={'Выберите регионы'}
-                                name={'region'}
-                                rules={[{
-                                    required: true,
-                                    message: 'Выберите регионы'
-                                }]}
-                                wrapperCol={{
-                                    span: 24,
-                                }}
-                            >
-                                <Select
-                                    style={{
-                                        width: '100%',
-                                    }}
-                                    placeholder='Выберите регионы '
-                                    optionLabelProp='label'
-                                    options={regionsOfUzbekistan}
-                                />
-                            </Form.Item>
-                        </Col>
+
 
 
                     </Row>

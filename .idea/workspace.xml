@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aec4ce1c-3b0f-44f0-92b9-16218c880eaa" name="Changes" comment="stucture full" />
+    <list default="true" id="aec4ce1c-3b0f-44f0-92b9-16218c880eaa" name="Changes" comment="stucture full">
+      <change afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInnerPostEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/AppLayout/AppPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/AppLayout/AppPage/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/LedScreenTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/LedScreenTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/chart/BarChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/chart/BarChart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/chart/PieChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/chart/PieChart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/chart/RefererChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/chart/RefererChart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenPostEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenPostEdit.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/auth/AuthProvider/AuthProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/auth/AuthProvider/AuthProvider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/routerPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/routerPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/service/apis/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/service/apis/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/service/auth/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/service/auth/axios.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,14 +31,26 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;BoburBerdiev&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Islom0906/artmedia.git&quot;,
+    &quot;accountId&quot;: &quot;9b532132-feb6-4737-9419-d7c87beeabb1&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -35,7 +65,7 @@
     &quot;Node.js.SlotPostEdit.jsx.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.index.jsx.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/PROJECT_ALL/REACT/media-city/project/src/components&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -85,7 +115,12 @@
       <workItem from="1736944156096" duration="10817000" />
       <workItem from="1736955949421" duration="9000" />
       <workItem from="1736977527997" duration="7686000" />
-      <workItem from="1737010636870" duration="12622000" />
+      <workItem from="1737010636870" duration="15190000" />
+      <workItem from="1737069189800" duration="920000" />
+      <workItem from="1737070177380" duration="3828000" />
+      <workItem from="1737074113643" duration="3820000" />
+      <workItem from="1737097615639" duration="18000" />
+      <workItem from="1737121487940" duration="19658000" />
     </task>
     <task id="LOCAL-00001" summary="stucture full">
       <option name="closed" value="true" />
