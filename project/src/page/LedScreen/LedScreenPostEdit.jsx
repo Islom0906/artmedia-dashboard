@@ -249,14 +249,7 @@ const LedScreenPostEdit = () => {
     };
 
 
-    const checkFormat = (file) => {
-        const isValidFormat = ['image/jpeg', 'image/png', 'image/jpg', 'video/mp4', 'application/pdf'].includes(file.type);
-        if (!isValidFormat) {
-            message.error('Пожалуйста, загружайте только файлы в формате jpg, jpeg, png или mp4.');
-            return Upload.LIST_IGNORE;
-        }
-        return true;
-    }
+
 
     return (
         <div>

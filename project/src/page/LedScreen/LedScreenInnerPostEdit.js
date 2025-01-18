@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import {Button, Card, Col, Form, Input, InputNumber, Row, Select, Typography} from "antd";
+import {useEffect, useState} from "react";
+import {Button, Card, Col, Form, Input, InputNumber, message, Row, Select, Typography, Upload} from "antd";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -9,7 +9,7 @@ import {
     usePostQuery,
 } from "../../service/query/Queries";
 import {
-    EditGetById,
+    EditGetById, onPreviewImage,
     SetInitialValue,
     SuccessCreateAndEdit,
 } from "../../hooks";
@@ -18,6 +18,7 @@ import { AppLoader, FormInput } from "../../components";
 const LedScreenPostEdit = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
+    const [fileListProps, setFileListProps] = useState([]);
     const editId = queryParams.get("editId");
     const selectID = queryParams.get("selectID");
     const toHour = queryParams.get("toHour");
@@ -26,7 +27,14 @@ const LedScreenPostEdit = () => {
 
     const fromHourNum = parseInt(fromHour, 10);
     const toHourNum = parseInt(toHour, 10);
-
+    const checkFormat = (file) => {
+        const isValidFormat = ['application/pdf'].includes(file.type);
+        if (!isValidFormat) {
+            message.error('Пожалуйста, загружайте только файлы в формате pdf.');
+            return Upload.LIST_IGNORE;
+        }
+        return true;
+    }
     const workingDayStatistics =
         !isNaN(fromHourNum) && !isNaN(toHourNum) && fromHourNum > toHourNum
             ? Array.from({ length: fromHourNum - toHourNum }, (_, index) => {
@@ -56,22 +64,22 @@ const LedScreenPostEdit = () => {
     ];
 
     const initialValueForm = {
-        young: 0,
-        middleAge: 0,
-        oldAge: 0,
-        nightVision: 0,
-        onFoot: 0,
-        bus: 0,
-        auto: 0,
-        bike: 0,
-        otherTransport: 0,
-        workingDayMonth: 0,
-        offDayMonth: 0,
+        young: null,
+        middleAge: null,
+        oldAge: null,
+        nightVision: null,
+        onFoot: null,
+        bus: null,
+        auto: null,
+        bike: null,
+        otherTransport: null,
+        workingDayMonth: null,
+        offDayMonth: null,
         workingDayStatistics: workingDayStatistics || [],
         dayOffStatistics: workingDayStatistics || [],
-        monthViewsSeconds: 0,
-        price: 0,
-        locationId: 0,
+        monthViewsSeconds: null,
+        price: null,
+        locationId: null,
         month: "Январь",
         pdf:[]
     };
@@ -94,10 +102,30 @@ const LedScreenPostEdit = () => {
     SuccessCreateAndEdit(postStatisticsLoading, putStatisticsLoading, `/led-screen/${selectID}`);
     EditGetById(editStatisticsRefetch, editId);
     SetInitialValue(form, initialValueForm);
+    useEffect(() => {
+        if (imagesUploadSuccess) {
+            const uploadImg = [{
+                uid: imagesUpload[0]?._id,
+                name: imagesUpload[0]?._id,
+                status: "done",
+                url: `${process.env.REACT_APP_API_URL}/${imagesUpload[0]?.path}`
+            }]
+            form.setFieldsValue({image: uploadImg});
+            setFileListProps(uploadImg);
+        }
+    }, [imagesUpload]);
+
 
     useEffect(() => {
         if (editStatisticsSuccess) {
+            const pdf = [{
+                uid: editStatisticsData?.pdf?._id,
+                name: editStatisticsData?.pdf?._id,
+                status: "done",
+                url:`${process.env.REACT_APP_API_URL}/${editStatisticsData.pdf?.path}`
+            }];
             const edit = {
+                pdf,
                 young: editStatisticsData?.young,
                 middleAge: editStatisticsData?.middleAge,
                 oldAge: editStatisticsData?.oldAge,
@@ -116,7 +144,7 @@ const LedScreenPostEdit = () => {
                 workingDayStatistics: editStatisticsData?.workingDayStatistics,
                 dayOffStatistics:editStatisticsData?.dayOffStatistics
             };
-
+            setFileListProps(pdf)
             form.setFieldsValue(edit);
         }
     }, [editStatisticsData]);
@@ -131,6 +159,7 @@ const LedScreenPostEdit = () => {
             bus: value?.bus,
             auto: value?.auto,
             bike: value?.bike,
+            pdf: fileListProps[0]?.uid,
             otherTransport: value?.otherTransport,
             workingDayMonth: value?.workingDayMonth,
             offDayMonth: value?.offDayMonth,
@@ -153,7 +182,22 @@ const LedScreenPostEdit = () => {
     const onFailed = (value) => {
         console.log(value);
     };
-    const { Title , Text } = Typography;
+
+    const onChangeImage = ({fileList: newFileList}) => {
+        const formData = new FormData();
+        if (fileListProps.length !== 0 || newFileList.length === 0) {
+            form.setFieldsValue({image: []});
+            const id = [fileListProps[0]?.uid];
+            if (fileListProps[0]?.name) {
+                imagesDeleteMutate({url: "/media", id});
+            }
+            setFileListProps([])
+        } else if (newFileList.length !== 0) {
+            formData.append("media", newFileList[0].originFileObj);
+            imagesUploadMutate({url: "/media", data: formData});
+        }
+    };
+    const { Title } = Typography;
 
     return (
         <div>
@@ -341,6 +385,26 @@ const LedScreenPostEdit = () => {
                                     </Row>
 
                                 </Card>
+                            </Col>
+                            <Col span={8}>
+                                <Form.Item
+                                    label='PDF:'
+                                    name={'image'}
+                                    rules={[{required: true, message: ' PDF'}]}
+                                >
+                                    {/*<ImgCrop>*/}
+                                    <Upload
+                                        maxCount={1}
+                                        fileList={fileListProps}
+                                        listType='picture-card'
+                                        onChange={onChangeImage}
+                                        onPreview={onPreviewImage}
+                                        beforeUpload={(file) => checkFormat(file)}
+                                    >
+                                        {fileListProps.length > 0 ? "" : "Upload"}
+                                    </Upload>
+                                    {/*</ImgCrop>*/}
+                                </Form.Item>
                             </Col>
                         </Row>
 

@@ -5,27 +5,22 @@ const BarChart = ({
                       dataTime,
                       subTitle,
                       barData,
+    isDailyBarData,
                       color,
                       footerText,
-                      isPercentage,
+                      isPercentage,isDaily
                   }) => {
     const chartRef = useRef(null);
 
     useEffect(() => {
         const chartInstance = echarts.init(chartRef.current);
 
-        const totalSum = barData.reduce((sum, value) => sum + value, 0);
-
-        const displayData = isPercentage
-            ? barData.map((value) => ((value / totalSum) * 100).toFixed(2))
-            : barData;
-
         const option = {
             title: {
                 text: subTitle,
                 left: "left",
                 top: "top",
-                textStyle: { fontSize: 15, fontWeight: "400" },
+                textStyle: { fontSize: 13, fontWeight: "400" },
             },
             tooltip: {
                 trigger: "item",
@@ -48,7 +43,32 @@ const BarChart = ({
             },
             series: [
                 {
-                    data: displayData,
+                    show: !isDaily,
+                    data: barData,
+                    type: "bar",
+                    itemStyle: { color },
+                    label: {
+                        show: true,
+                        position: "inside",
+                        align: "center",
+                        textStyle: { fontSize: 9 },
+                        verticalAlign: "middle",
+                        rotate: 90,
+                        formatter: (params) =>
+                            isPercentage
+                                ? `${params.value}%`
+                                : params.value
+                                    .toLocaleString("ru-RU")
+                                    .replace(",", " "),
+                    },
+                    animation: true,
+                    animationDuration: 1500,
+                    animationEasing: "elasticOut",
+                    animationDelay: (index) => index * 200,
+                },
+                {
+                    show: !isDaily,
+                    data: isDailyBarData,
                     type: "bar",
                     itemStyle: { color },
                     label: {

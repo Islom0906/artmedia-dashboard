@@ -22,6 +22,7 @@ const LedScreenInner = () => {
     const [visible, setVisible] = useState(false);
     const [isVideoPlaying, setIsVideoPlaying] = useState(false)
     const [isPercentage, setIsPercentage] = useState(false);
+    const [isDaily , setIsDaily] = useState(false);
     const togglePercentage = () => setIsPercentage((prev) => !prev);
     const { id } = useParams();
     const navigate = useNavigate()
@@ -39,58 +40,10 @@ const LedScreenInner = () => {
         navigate(`/led-screen/statistics-add?selectID=${getByIdLedScreen?._id}&toHour=${getByIdLedScreen?.toHour}&fromHour=${getByIdLedScreen?.fromHour}`);
     };
 
-
-    useEffect(() => {
-        if(id) {
-            refetchLedScreenGetById();
-            refetchLedScreenGetByIdStatistics()
-        }
-    }, []);
-
-
-
-
     const showDrawer = () => setVisible(true);
     const hideDrawer = () => setVisible(false);
-
-    const TimeViews = useMemo(() =>{
-        const  dataTimeViews= [
-            { value: getByIdLedScreenStatistics?.statistics?.timeViews?.workingDay, name: 'Рабочий дни' },
-            { value: getByIdLedScreenStatistics?.statistics?.timeViews?.offDay, name: 'Выходные дни' },
-            { value: getByIdLedScreenStatistics?.statistics?.timeViews?.nightVision, name: 'Ночное время' },
-        ]
-
-        return dataTimeViews
-    } , [getByIdLedScreenStatistics])
-    const AgeViews = useMemo(() =>{
-        const  dataAgeViews= [
-            { value: getByIdLedScreenStatistics?.statistics?.age?.young, name: '0-16 ' },
-            { value: getByIdLedScreenStatistics?.statistics?.age?.middleAge, name: '17-60 ' },
-            { value: getByIdLedScreenStatistics?.statistics?.age?.oldAge, name: '61-100 ' },
-        ]
-        return dataAgeViews
-    } , [getByIdLedScreenStatistics])
-    const PassengerViews = useMemo(() =>{
-        const  dataPassengerViews= [
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.auto, name: 'Авто' },
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.bus, name: 'Автобус' },
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.onFoot, name: 'Пеший' },
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.bike, name: 'Велосипед' },
-            { value: getByIdLedScreenStatistics?.statistics?.passenger?.otherTransport, name: 'И другие виды транспорта' },
-        ]
-        return dataPassengerViews
-    } , [getByIdLedScreenStatistics])
-
-
-    const ViewsMonthSeconds = useMemo(() =>{
-        const  dataViewsMonthSeconds= [
-                { value: getByIdLedScreenStatistics?.statistics?.viewsMonthSeconds?.viewSeconds, name: 'Ролик IYB' },
-                { value: getByIdLedScreenStatistics?.statistics?.viewsMonthSeconds?.otherSeconds, name: 'Другие ролики' },
-        ]
-        return dataViewsMonthSeconds
-    } , [getByIdLedScreenStatistics])
     const info = useMemo(() => {
-         const count = [
+        const count = [
             {
                 today: "Pixel экрана",
                 title: getByIdLedScreen?.screenPixel,
@@ -115,50 +68,90 @@ const LedScreenInner = () => {
         return count
 
     } , [getByIdLedScreen])
+    useEffect(() => {
+        if(id) {
+            refetchLedScreenGetById();
+            refetchLedScreenGetByIdStatistics()
+        }
+    }, []);
 
 
-    // const formatBarChartData = (data) => {
-    //     return {
-    //         labels: data?.map(item => item?.hour),
-    //         values:  isPercentage ? data?.map(item => item?.viewsNumberMonthPercent) : data?.map(item => item?.viewsNumberMonth),
-    //     };
-    // };
-    //
+
+
+
+    const TimeViews = useMemo(() =>{
+        const  dataTimeViews= [
+            { value: getByIdLedScreenStatistics?.statistics?.timeViews?.workingDay, name: 'Рабочий дни' },
+            { value: getByIdLedScreenStatistics?.statistics?.timeViews?.offDay, name: 'Выходные дни' },
+            { value: getByIdLedScreenStatistics?.statistics?.timeViews?.nightVision, name: 'Ночное время' },
+        ]
+
+        return dataTimeViews
+    } , [getByIdLedScreenStatistics ,isPercentage])
+    const AgeViews = useMemo(() =>{
+        const  dataAgeViews= [
+            { value: getByIdLedScreenStatistics?.statistics?.age?.young, name: '0-16 ' },
+            { value: getByIdLedScreenStatistics?.statistics?.age?.middleAge, name: '17-60 ' },
+            { value: getByIdLedScreenStatistics?.statistics?.age?.oldAge, name: '61-100 ' },
+        ]
+        return dataAgeViews
+    } , [getByIdLedScreenStatistics ,isPercentage])
+    const PassengerViews = useMemo(() =>{
+        const  dataPassengerViews= [
+            { value: getByIdLedScreenStatistics?.statistics?.passenger?.auto, name: 'Авто' },
+            { value: getByIdLedScreenStatistics?.statistics?.passenger?.bus, name: 'Автобус' },
+            { value: getByIdLedScreenStatistics?.statistics?.passenger?.onFoot, name: 'Пеший' },
+            { value: getByIdLedScreenStatistics?.statistics?.passenger?.bike, name: 'Велосипед' },
+            { value: getByIdLedScreenStatistics?.statistics?.passenger?.otherTransport, name: 'И другие виды транспорта' },
+        ]
+        return dataPassengerViews
+    } , [getByIdLedScreenStatistics ,isPercentage])
+
+
+    const ViewsMonthSeconds = useMemo(() =>{
+        const  dataViewsMonthSeconds= [
+                { value: getByIdLedScreenStatistics?.statistics?.viewsMonthSeconds?.viewSeconds, name: 'Ролик IYB' },
+                { value: getByIdLedScreenStatistics?.statistics?.viewsMonthSeconds?.otherSeconds, name: 'Другие ролики' },
+        ]
+        return dataViewsMonthSeconds
+    } , [getByIdLedScreenStatistics ,isPercentage])
+
+
+
     const offDaysStatisticData = useMemo( () => {
+        const a= getByIdLedScreenStatistics?.statistics?.offDaysStatistic
+
         return {
-            labels: getByIdLedScreenStatistics?.statistics?.offDaysStatistic?.map(item => item?.hour),
-            values:  isPercentage ? getByIdLedScreenStatistics?.statistics?.offDaysStatistic?.map(item => item?.viewsNumberMonthPercent) : getByIdLedScreenStatistics?.statistics?.offDaysStatistic?.map(item => item?.viewsNumberMonth),
+            labels: a?.map(item => item?.hour),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) : a?.map(item => item?.viewsNumberMonth),
         };
-    } , [getByIdLedScreenStatistics])
+    } , [getByIdLedScreenStatistics ,isPercentage])
     const workingDaysStatisticData = useMemo( () => {
+        const a= getByIdLedScreenStatistics?.statistics?.workingDaysStatistic
         return {
-            labels: getByIdLedScreenStatistics?.statistics?.workingDaysStatistic?.map(item => item?.hour),
-            values:  isPercentage ? getByIdLedScreenStatistics?.statistics?.workingDaysStatistic?.map(item => item?.viewsNumberMonthPercent) : getByIdLedScreenStatistics?.statistics?.workingDaysStatistic?.map(item => item?.viewsNumberMonth),
+            labels: a?.map(item => item?.hour),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) : a?.map(item => item?.viewsNumberMonth),
         };
     } , [getByIdLedScreenStatistics])
     const offDaysStatisticInMyVideoData = useMemo( () => {
+        const a= getByIdLedScreenStatistics?.statistics?.offDaysStatisticInMyVideo
         return {
-            labels: getByIdLedScreenStatistics?.statistics?.offDaysStatisticInMyVideo?.map(item => item?.hour),
-            values:  isPercentage ? getByIdLedScreenStatistics?.statistics?.offDaysStatisticInMyVideo?.map(item => item?.viewsNumberMonthPercent) : getByIdLedScreenStatistics?.statistics?.offDaysStatisticInMyVideo?.map(item => item?.viewsNumberMonth),
+            labels: a?.map(item => item?.hour),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) : a?.map(item => item?.viewsNumberMonthMyVideo),
         };
-    } , [getByIdLedScreenStatistics])
+    } , [getByIdLedScreenStatistics ,isPercentage])
     const workingDaysStatisticInMyVideoData = useMemo( () => {
+
+        const a = getByIdLedScreenStatistics?.statistics?.workingDaysStatisticInMyVideo
         return {
-            labels: getByIdLedScreenStatistics?.statistics?.workingDaysStatisticInMyVideo?.map(item => item?.hour),
-            values:  isPercentage ? getByIdLedScreenStatistics?.statistics?.workingDaysStatisticInMyVideo?.map(item => item?.viewsNumberDayMyVideo) : getByIdLedScreenStatistics?.statistics?.workingDaysStatisticInMyVideo?.map(item => item?.viewsNumberMonthMyVideo),
+            labels: a?.map(item => item?.hour),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) :  a?.map(item => item?.viewsNumberMonthMyVideo),
         };
-    } , [getByIdLedScreenStatistics])
-
-    // const workingDaysStatistic = formatBarChartData(getByIdLedScreenStatistics?.statistics?.workingDaysStatistic);
-    // const allViewsWorkingDay = formatBarChartData(getByIdLedScreenStatistics?.statistics?.allViewsWorkingDay);
+    } , [getByIdLedScreenStatistics ,isPercentage])
 
 
 
 
-
-    useEffect(() => {
-
-    } , [getByIdLedScreenStatistics])
 
     return (
         <>
@@ -351,7 +344,7 @@ const LedScreenInner = () => {
                                         <BarChart
                                             dataTime={workingDaysStatisticData?.labels || []}
                                             title={''}
-                                            subTitle={'Рабочий дни / 19 день'}
+                                            subTitle={`Рабочий дни / ${getByIdLedScreenStatistics?.statistics?.workingDayMonth} день`}
                                             isPercentage={isPercentage}
                                             barData={workingDaysStatisticData?.values || []}
                                         />
@@ -363,7 +356,7 @@ const LedScreenInner = () => {
                                         <BarChart
                                             dataTime={offDaysStatisticData?.labels || []}
                                             isPercentage={isPercentage}
-                                            subTitle={'Суббота, воскресение и дополнительные выходные дни / 12 день'}
+                                            subTitle={`Суббота, воскресение и дополнительные выходные дни / ${getByIdLedScreenStatistics?.statistics?.offDayMonth} день`}
                                             barData={offDaysStatisticData?.values || []}
                                         />
                                     </Card>
@@ -378,7 +371,7 @@ const LedScreenInner = () => {
 
                                 <Col xs={24} sm={24} md={12} lg={6}>
                                     <Card bordered={false} className="criclebox h-full" style={{height:'100%' }}>
-                                        <RefererChart isPercentage={isPercentage} data={ViewsMonthSeconds} />
+                                        <RefererChart isPercentage={isPercentage} data={ViewsMonthSeconds}  />
                                     </Card>
                                 </Col>
 
@@ -390,17 +383,21 @@ const LedScreenInner = () => {
                                             title={''}
                                             subTitle={'Рабочий дни / 19 дней'}
                                             barData={workingDaysStatisticInMyVideoData?.values || []}
+                                            footerText={`Все: ${getByIdLedScreenStatistics?.statistics?.allViewsWorkingDayMyVideo}`}
                                         />
                                     </Card>
                                 </Col>
                                 <Col xs={24} sm={24} md={12} lg={9}>
                                     <Card bordered={false} className="criclebox h-full" style={{ height: '100%' }}>
                                         <BarChart
+                                            isDaily={isDaily}
                                             dataTime={offDaysStatisticInMyVideoData.labels || []}
                                             isPercentage={isPercentage}
-                                            subTitle={'Суббота, воскресение и дополнительные выходные дни\n\n' +
-                                                '12 дней'}
+                                            subTitle={`Суббота, воскресение и дополнительные выходные дни
+                                                ${getByIdLedScreenStatistics?.statistics?.offDayMonth} дней`}
                                             barData={offDaysStatisticInMyVideoData?.values || []}
+                                            footerText={`Все: ${getByIdLedScreenStatistics?.statistics?.allViewsOffDayMyVideo}`}
+
                                         />
                                     </Card>
                                 </Col>
@@ -413,8 +410,6 @@ const LedScreenInner = () => {
                                 </Col>
                                 <Col span={24}>
                                     <Card style={{background:'#12895f'}}>
-
-
                                         <Space size={10} direction={"vertical"} style={{width:'100%'}}>
                                             <Text level={5} style={{color:'white' , display:'flex' ,justifyContent:'start' ,gap:2 , alignItems:'center'}}>
                                                 Бюджет: <Title style={{marginBottom:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.price}  </Title> сум / {getByIdLedScreenStatistics?.statistics?.month}
