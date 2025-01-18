@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aec4ce1c-3b0f-44f0-92b9-16218c880eaa" name="Changes" comment="stucture full">
-      <change afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInnerPostEdit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/AppLayout/AppPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/AppLayout/AppPage/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/components/LedScreenTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/LedScreenTable.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/components/chart/BarChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/chart/BarChart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/components/chart/PieChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/chart/PieChart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/components/chart/RefererChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/chart/RefererChart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInnerPostEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInnerPostEdit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenPostEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenPostEdit.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/page/auth/AuthProvider/AuthProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/auth/AuthProvider/AuthProvider.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/page/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/page/routerPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/routerPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/service/apis/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/service/apis/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/service/auth/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/service/auth/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/store/slice/themeSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/store/slice/themeSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +108,8 @@
       <workItem from="1737070177380" duration="3828000" />
       <workItem from="1737074113643" duration="3820000" />
       <workItem from="1737097615639" duration="18000" />
-      <workItem from="1737121487940" duration="19658000" />
+      <workItem from="1737121487940" duration="19692000" />
+      <workItem from="1737209804505" duration="14030000" />
     </task>
     <task id="LOCAL-00001" summary="stucture full">
       <option name="closed" value="true" />
@@ -138,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736248662379</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="stucture full">
+      <option name="closed" value="true" />
+      <created>1737164069332</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737164069332</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

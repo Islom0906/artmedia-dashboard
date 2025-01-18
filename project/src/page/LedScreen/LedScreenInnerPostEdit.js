@@ -73,8 +73,15 @@ const LedScreenPostEdit = () => {
         price: 0,
         locationId: 0,
         month: "Январь",
+        pdf:[]
     };
-
+    const {mutate: imagesDeleteMutate} = useDeleteQuery()
+    const {
+        mutate: imagesUploadMutate,
+        isSuccess: imagesUploadSuccess,
+        isLoading: imagesUploadLoading,
+        data: imagesUpload
+    } = usePostQuery()
     const { mutate: postStatisticsMutate, isLoading: postStatisticsLoading } =
         usePostQuery();
     const {
@@ -135,7 +142,6 @@ const LedScreenPostEdit = () => {
             month: value?.month,
 
         };
-        console.log(data);
 
         if (editStatisticsData) {
             putStatistics({ url: `/statistics`, data: data, id: editId });

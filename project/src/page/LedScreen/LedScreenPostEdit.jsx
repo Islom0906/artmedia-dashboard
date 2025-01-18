@@ -1,7 +1,6 @@
 import  {useEffect,  useState} from 'react';
 import {Button, Col,  Form, message, Row, Select, TimePicker, Upload} from "antd";
 import {useLocation} from "react-router-dom";
-
 import dayjs from "dayjs";
 import {useDeleteQuery, useEditQuery, useGetByIdQuery, usePostQuery} from "../../service/query/Queries";
 import {EditGetById, SetInitialValue, SuccessCreateAndEdit , onPreviewImage} from "../../hooks";
@@ -17,6 +16,7 @@ const initialValueForm ={
     fromHour: "",
     toHour: "",
     passportID:"",
+    screenSize:""
 }
 
 
@@ -114,6 +114,7 @@ const LedScreenPostEdit = () => {
                 fromHour: dayjs(editLocationData?.fromHour , "HH:mm"),
                 toHour: dayjs(editLocationData?.toHour , "HH:mm"),
                 region: editLocationData?.region,
+                screenSize: editLocationData?.screenSize,
             }
 
             setFileListProps(image)
@@ -134,6 +135,7 @@ const LedScreenPostEdit = () => {
             fromHour: dayjs(value.fromHour).format("HH:mm"),
             toHour: dayjs(value.toHour).format("HH:mm"),
             region: value?.region,
+            screenSize: value?.screenSize,
         }
         if (editLocationData) {
             putLocation({url: `/location`, data: data, id: editId})
@@ -281,16 +283,16 @@ const LedScreenPostEdit = () => {
                         <Col span={24}>
                             <FormInput
                                 required={true}
-                                required_text={'Требуется название адрес'}
-                                label={'Название адрес'}
+                                required_text={' название адрес'}
+                                label={' адрес'}
                                 name={'address'}
                             />
                         </Col>
                         <Col span={12}>
                             <FormInput
                                 required={true}
-                                required_text={'Требуется название паспорт удостоверение личности'}
-                                label={'Название паспорт удостоверение личности'}
+                                required_text={' название паспорт удостоверение личности'}
+                                label={' паспорт удостоверение личности'}
                                 name={'passportID'}
                             />
                         </Col>
@@ -320,7 +322,7 @@ const LedScreenPostEdit = () => {
                             <Form.Item
                                 label='Картина:'
                                 name={'image'}
-                                // rules={[{required: true, message: 'Требуется Картина'}]}
+                                // rules={[{required: true, message: ' Картина'}]}
                             >
                                 {/*<ImgCrop>*/}
                                 <Upload
@@ -340,7 +342,7 @@ const LedScreenPostEdit = () => {
                             <Form.Item
                                 label='Фото места:'
                                 name={'locationImage'}
-                                // rules={[{required: true, message: 'Требуется Фото места'}]}
+                                // rules={[{required: true, message: ' Фото места'}]}
                             >
                                 {/*<ImgCrop>*/}
                                 <Upload
@@ -360,7 +362,7 @@ const LedScreenPostEdit = () => {
                             <Form.Item
                                 label='Видео:'
                                 name={'video'}
-                                // rules={[{required: true, message: 'Требуется Видео'}]}
+                                // rules={[{required: true, message: ' Видео'}]}
                             >
                                 {/*<ImgCrop>*/}
                                 <Upload
@@ -376,14 +378,23 @@ const LedScreenPostEdit = () => {
                                 {/*</ImgCrop>*/}
                             </Form.Item>
                         </Col>
-                        <Col span={12}>
+                        <Col span={6}>
                             <FormInput
                                 required={true}
-                                required_text={'Требуется название пиксели экрана'}
-                                label={'Название пиксели экрана'}
+                                required_text={' название пиксели экрана'}
+                                label={' пиксели экрана'}
                                 name={'screenPixel'}
                             />
                         </Col>
+                        <Col span={6}>
+                            <FormInput
+                                required={true}
+                                required_text={' название пиксели экрана'}
+                                label={' размер экрана'}
+                                name={'screenSize'}
+                            />
+                        </Col>
+                        {/*screenSize*/}
                         <Col span={6}>
                             <Form.Item
                                 label="время начала"
