@@ -123,21 +123,21 @@ const LedScreenInner = () => {
 
         return {
             labels: a?.map(item => item?.hour),
-            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) : a?.map(item => item?.viewsNumberMonth),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) : isDaily ? a?.map(item => item?.viewsNumber): a?.map(item => item?.viewsNumberMonth),
         };
     } , [getByIdLedScreenStatistics ,isPercentage])
     const workingDaysStatisticData = useMemo( () => {
         const a= getByIdLedScreenStatistics?.statistics?.workingDaysStatistic
         return {
             labels: a?.map(item => item?.hour),
-            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) : a?.map(item => item?.viewsNumberMonth),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthPercent) :  isDaily ? a?.map(item => item?.viewsNumber):a?.map(item => item?.viewsNumberMonth),
         };
     } , [getByIdLedScreenStatistics])
     const offDaysStatisticInMyVideoData = useMemo( () => {
         const a= getByIdLedScreenStatistics?.statistics?.offDaysStatisticInMyVideo
         return {
             labels: a?.map(item => item?.hour),
-            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) : a?.map(item => item?.viewsNumberMonthMyVideo),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) : isDaily ? a?.map(item => item?.viewsNumberMyVideo) :a?.map(item => item?.viewsNumberMonthMyVideo),
         };
     } , [getByIdLedScreenStatistics ,isPercentage])
     const workingDaysStatisticInMyVideoData = useMemo( () => {
@@ -145,7 +145,7 @@ const LedScreenInner = () => {
         const a = getByIdLedScreenStatistics?.statistics?.workingDaysStatisticInMyVideo
         return {
             labels: a?.map(item => item?.hour),
-            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) :  a?.map(item => item?.viewsNumberMonthMyVideo),
+            values:  isPercentage ? a?.map(item => item?.viewsNumberMonthMyVideoPercent) : isDaily ? a?.map(item => item?.viewsNumberMyVideo) : a?.map(item => item?.viewsNumberMonthMyVideo)
         };
     } , [getByIdLedScreenStatistics ,isPercentage])
 
