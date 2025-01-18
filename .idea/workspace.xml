@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="aec4ce1c-3b0f-44f0-92b9-16218c880eaa" name="Changes" comment="stucture full">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInnerPostEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInnerPostEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/AppLayout/AppHeader/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/AppLayout/AppHeader/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/AppLayout/AppSidebar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/AppLayout/AppSidebar/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/constants/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/constants/theme.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenPostEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenPostEdit.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/store/slice/themeSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/store/slice/themeSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +33,12 @@
     &quot;assignee&quot;: &quot;BoburBerdiev&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Islom0906/artmedia.git&quot;,
-    &quot;accountId&quot;: &quot;9b532132-feb6-4737-9419-d7c87beeabb1&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Islom0906/artmedia.git",
+    "accountId": "879979a3-7323-497b-8bba-4fd90162218b"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -48,23 +48,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.SlotPostEdit.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.index.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PROJECT_ALL/REACT/media-city/project/src/components&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.SlotPostEdit.jsx.executor": "Run",
+    "Node.js.index.jsx.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/PROJECT_ALL/REACT/media-city/project/src/components",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/home/islom/.local/share/JetBrains/Toolbox/apps/webstorm-2/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\PROJECT_ALL\REACT\media-city\project\src\components" />
@@ -110,6 +110,7 @@
       <workItem from="1737097615639" duration="18000" />
       <workItem from="1737121487940" duration="19692000" />
       <workItem from="1737209804505" duration="14030000" />
+      <workItem from="1737239642701" duration="2571000" />
     </task>
     <task id="LOCAL-00001" summary="stucture full">
       <option name="closed" value="true" />

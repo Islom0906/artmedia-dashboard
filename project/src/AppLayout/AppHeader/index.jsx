@@ -40,7 +40,7 @@ const AppHeader = () => {
             <Flex style={{ width: 250, height: 40 }} align={"center"} justify={"center"}>
                         <img className={'logo'}
                              src={`/logo 3.png`}
-                             style={{ width: '100%', height: '100%', objectFit: "contain" }}
+                             style={{ width: '100%', height: '100%', objectFit: "contain",marginLeft:'20px' }}
                         />
             </Flex>
             <Flex align={"center"}>

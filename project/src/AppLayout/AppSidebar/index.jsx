@@ -24,9 +24,9 @@ const AppSidebar = () => {
 
     return (
         <Sider
-            width={300}
+            width={270}
             collapsedWidth={60}
-            collapsible
+            // collapsible
             collapsed={collapsed}
             onCollapse={toggleCollapsed}
             style={{
@@ -54,16 +54,16 @@ const AppSidebar = () => {
                     <Menu.Item key="1" style={{ color: '#ffffff' }}>
                         <Link to="/dashboard">Led экраны</Link>
                     </Menu.Item>
-                    <Menu.Item key="2" style={{ color: '#ffffff' }}>
+                    <Menu.Item disabled={true} key="2" style={{ color: '#ffffff' }}>
                         Крышные конструкции
                     </Menu.Item>
-                    <Menu.Item key="3" style={{ color: '#ffffff' }}>
+                    <Menu.Item disabled={true} key="3" style={{ color: '#ffffff' }}>
                         Билборды
                     </Menu.Item>
-                    <Menu.Item key="4" style={{ color: '#ffffff' }}>
+                    <Menu.Item disabled={true} key="4" style={{ color: '#ffffff' }}>
                         Брандмауэры
                     </Menu.Item>
-                    <Menu.Item key="5" style={{ color: '#ffffff' }}>
+                    <Menu.Item disabled={true} key="5" style={{ color: '#ffffff' }}>
                         Сити-форматы
                     </Menu.Item>
                 </Menu.SubMenu>
