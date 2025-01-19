@@ -231,15 +231,7 @@ const LedScreenInner = () => {
                             <FaLocationDot style={{fontSize:'16px'}}/>  {getByIdLedScreen?.address}
                         </Title>
                     </Col>
-                    <Col span={8}>
-                        <Button
-                            type='primary'
-                            icon={<PlusOutlined/>}
-                            style={{width: '100%'}}
-                            onClick={addArticle}>
-                             Добавить
-                        </Button>
-                    </Col>
+
                     <Divider className={'home-divider'}/>
                 </Row>
                 <Space direction={"vertical"} style={{width:'100%'}} size={["large" , 'middle']}>
@@ -318,6 +310,13 @@ const LedScreenInner = () => {
                                             <Button onClick={togglePercentage} type={"primary"}>
                                                 {isPercentage ? <GoNumber style={{fontSize:24}} /> : <BsPercent style={{fontSize:24}} />}
                                             </Button>
+                                            <Button
+                                                type='primary'
+                                                icon={<PlusOutlined/>}
+                                                style={{width: '100%'}}
+                                                onClick={addArticle}>
+                                                Статистика
+                                            </Button>
                                             <Select
                                                 style={{
                                                     width: '100%',
@@ -328,7 +327,9 @@ const LedScreenInner = () => {
                                                 optionLabelProp='label'
                                                 options={selectMounth}
                                             />
+
                                         </Col>
+
                                     </Row>
                                 </Col>
                                 <Col xs={24} sm={24} md={12} lg={12} xl={6}   >
