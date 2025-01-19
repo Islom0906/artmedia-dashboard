@@ -249,9 +249,9 @@ const LedScreenPostEdit = () => {
     };
 
     const checkFormat = (file) => {
-        const isValidFormat = ['application/pdf'].includes(file.type);
+        const isValidFormat = ['image/jpeg', 'image/png', 'image/jpg', 'video/mp4', 'application/pdf'].includes(file.type);
         if (!isValidFormat) {
-            message.error('Пожалуйста, загружайте только файлы в формате pdf.');
+            message.error(" Iltimos faqat shu formatdagi fayl yuklang jpg, jpeg, png, or mp4 files.");
             return Upload.LIST_IGNORE;
         }
         return true;
