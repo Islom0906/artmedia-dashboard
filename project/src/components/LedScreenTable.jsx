@@ -3,7 +3,22 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import {FaRegEye} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
-
+const regionsOfUzbekistan = [
+    { text: 'Ташкент', value: 'Ташкент' },
+    { text: 'Андижанская область', value: 'Андижанская область' },
+    { text: 'Бухарская область', value: 'Бухарская область' },
+    { text: 'Джизакская область', value: 'Джизакская область' },
+    { text: 'Кашкадарьинская область', value: 'Кашкадарьинская область' },
+    { text: 'Навоийская область', value: 'Навоийская область' },
+    { text: 'Наманганская область', value: 'Наманганская область' },
+    { text: 'Самаркандская область', value: 'Самаркандская область' },
+    { text: 'Сурхандарьинская область', value: 'Сурхандарьинская область' },
+    { text: 'Сырдарьинская область', value: 'Сырдарьинская область' },
+    { text: 'Ташкентская область', value: 'Ташкентская область' },
+    { text: 'Ферганская область', value: 'Ферганская область' },
+    { text: 'Хорезмская область', value: 'Хорезмская область' },
+    { text: 'Республика Каракалпакстан', value: 'Республика Каракалпакстан' }
+];
 const HouseTable = ({data,deleteHandle ,editHandle}) => {
     const navigate = useNavigate();
 
@@ -28,7 +43,9 @@ const HouseTable = ({data,deleteHandle ,editHandle}) => {
             title: 'Регион',
             dataIndex: 'region',
             id: 'region',
-            render: (region) => <p>{region}</p>,
+            filters: [...regionsOfUzbekistan],
+            onFilter: (value, record) => record.region.indexOf(value) === 0,
+            // render: (region) => <p>{region}</p>,
         },
         {
             title: 'Pixel экрана',

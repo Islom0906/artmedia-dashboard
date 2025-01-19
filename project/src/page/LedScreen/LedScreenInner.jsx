@@ -5,8 +5,8 @@ import {FieldTimeOutlined, PlusOutlined} from "@ant-design/icons";
 import {BsArrowsFullscreen, BsPercent} from "react-icons/bs";
 import {MdOutlineScreenshotMonitor} from "react-icons/md";
 import {IoMdTime} from "react-icons/io";
-import {RiPassPendingLine} from "react-icons/ri";
-import {FaQuestion} from "react-icons/fa";
+import {RiFileExcel2Fill, RiPassPendingLine} from "react-icons/ri";
+import {FaFilePdf, FaQuestion} from "react-icons/fa";
 import {FaLocationDot} from "react-icons/fa6";
 import {BarChart, PieChart, RefererChart} from "../../components";
 import {useNavigate, useParams} from "react-router-dom";
@@ -327,9 +327,7 @@ const LedScreenInner = () => {
                                                 optionLabelProp='label'
                                                 options={selectMounth}
                                             />
-
                                         </Col>
-
                                     </Row>
                                 </Col>
                                 <Col xs={24} sm={24} md={12} lg={12} xl={6}   >
@@ -457,32 +455,74 @@ const LedScreenInner = () => {
                                 <Col span={24}>
                                     <Card style={{background:'#12895f'}}>
                                         <Space size={10} direction={"vertical"} style={{width:'100%'}}>
-                                            <Text level={5} style={{color:'white' , display:'flex' ,justifyContent:'start' ,gap:2 , alignItems:'center'}}>
-                                                Бюджет: <Title style={{marginBottom:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.price}  </Title> сум / {getByIdLedScreenStatistics?.statistics?.month}
-                                            </Text>
-                                            <Text level={5} style={{color:'white' , display:'flex' ,justifyContent:'start' ,gap:2 , alignItems:'center'}}>
+                                            <Space size={5}>
+                                                <Text style={{color:"white"}}>
+                                                    Бюджет:
+                                                </Text>
+                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.price}
+                                                </Title>
+                                                <Text style={{color:"white"}}>
+                                                    сум /
+                                                    {getByIdLedScreenStatistics?.statistics?.month}
+                                                </Text>
+                                            </Space>
+                                            <Space size={5}>
+                                                <Text style={{color:"white"}}>
+                                                    OTS:
+                                                </Text>
+                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.allViews}
+                                                </Title>
+                                            </Space>
+                                            <Space size={5}>
+                                                <Text style={{color:"white"}}>
+                                                    Время трансляции ролика на экране за декабрь:
+                                                </Text>
+                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.monthViewsSeconds}
+                                                </Title>
+                                                <Text style={{color:"white"}}>
+                                                    сек
+                                                </Text>
+                                            </Space>
+                                            <Space size={5}>
+                                                <Text style={{color:"white"}}>
+                                                    Доля просмотров ролика и IYB:
+                                                </Text>
+                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.monthViewsMyVideo}
+                                                </Title>
+                                                <Text style={{color:"white"}}>
+                                                    чел
+                                                </Text>
+                                            </Space>
 
-                                                OTS: <Title style={{marginBottom:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.allViews}</Title>
-                                            </Text>
-                                            <Text level={5} style={{color:'white' , display:'flex' ,justifyContent:'start' ,gap:2 , alignItems:'center'}}>
-                                                Время трансляции ролика на экране за декабрь
-                                                <Title style={{marginBottom:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.monthViewsSeconds}</Title> сек
-                                            </Text>
-                                            <Text level={5} style={{color:'white' , display:'flex' ,justifyContent:'start' ,gap:2 , alignItems:'center'}}>
-                                                Доля просмотров ролика и IYB:
-                                                <Title style={{marginBottom:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.monthViewsMyVideo}</Title> чел
-                                            </Text>
 
                                             <div style={{display:"flex" , justifyContent:'space-between'}}>
-                                                <Text level={5} style={{color:'white' , display:'flex' ,justifyContent:'start' ,gap:2 , alignItems:'center'}}>
-                                                    Сумма одного просмотра:
-                                                    <Title style={{marginBottom:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.oneViewsPrice}</Title> cум
-                                                </Text>
-                                                <Button>
-                                                    <a href="../../public/Media-City-Analitic.pdf" download>
+                                                <Space size={5}>
+                                                    <Text style={{color:"white"}}>
+                                                        Сумма одного просмотра:
+                                                    </Text>
+                                                    <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}>{getByIdLedScreenStatistics?.statistics?.oneViewsPrice}
+                                                    </Title>
+                                                    <Text style={{color:"white"}}>
+                                                        cум
+                                                    </Text>
+                                                </Space>
+                                                <Space size={"small"} direction={"vertical"} >
+                                                    <Text style={{color:"white"}}>
                                                         Cкачать
-                                                    </a>
-                                                </Button>
+                                                    </Text>
+                                                    <Space size={"small"} direction={"horizontal"}> <Button type={"primary"}>
+                                                        <a href={`${process.env.REACT_APP_API_URL}/${getByIdLedScreenStatistics?.statistics?.pdf}`} download>
+                                                            <FaFilePdf  />
+                                                        </a>
+
+                                                    </Button >
+                                                        <Button type={"primary"} disabled={true}>
+                                                                <RiFileExcel2Fill style={{color:"white"}} />
+                                                        </Button>
+                                                    </Space>
+
+                                                </Space>
+
                                             </div>
                                         </Space>
                                     </Card>
