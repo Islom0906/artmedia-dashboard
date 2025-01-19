@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aec4ce1c-3b0f-44f0-92b9-16218c880eaa" name="Changes" comment="checkformat togirlandi" />
+    <list default="true" id="aec4ce1c-3b0f-44f0-92b9-16218c880eaa" name="Changes" comment="stucture full">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +35,7 @@
     &quot;url&quot;: &quot;https://github.com/Islom0906/artmedia.git&quot;,
     &quot;accountId&quot;: &quot;879979a3-7323-497b-8bba-4fd90162218b&quot;
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -42,21 +45,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.SlotPostEdit.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.index.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PROJECT_ALL/REACT/media-city/project/src/components&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/islom/.local/share/JetBrains/Toolbox/apps/webstorm-2/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.SlotPostEdit.jsx.executor": "Run",
+    "Node.js.index.jsx.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/PROJECT_ALL/REACT/media-city/project/src/components",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
 }</component>
   <component name="RecentsManager">
@@ -105,6 +108,7 @@
       <workItem from="1737121487940" duration="19692000" />
       <workItem from="1737209804505" duration="14030000" />
       <workItem from="1737239642701" duration="2571000" />
+      <workItem from="1737209804505" duration="23534000" />
     </task>
     <task id="LOCAL-00001" summary="stucture full">
       <option name="closed" value="true" />
@@ -154,13 +158,13 @@
       <option name="project" value="LOCAL" />
       <updated>1737239541103</updated>
     </task>
-    <task id="LOCAL-00007" summary="checkformat togirlandi">
+    <task id="LOCAL-00007" summary="stucture full">
       <option name="closed" value="true" />
-      <created>1737248437620</created>
+      <created>1737239934060</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1737248437620</updated>
+      <updated>1737239934060</updated>
     </task>
     <option name="localTasksCounter" value="8" />
     <servers />
