@@ -1,14 +1,12 @@
 import './index.scss'
-import { SunOutlined, UserOutlined } from "@ant-design/icons";
-import { Avatar, Button, Dropdown, Flex } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import {  Button, Dropdown, Flex } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { useDispatch, useSelector } from "react-redux";
-import { changeThemeMode } from "../../store/slice/themeSlice";
 import { authData } from "../../store/slice/authSlice";
 import { useNavigate } from "react-router-dom";
-import { BsMoon } from "react-icons/bs";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
-
+import logo from '../../assets/logo 3.png'
 const AppHeader = () => {
     const { systemMode } = useSelector(state => state.theme)
     const { data: { user } } = useSelector(state => state.auth)
@@ -39,7 +37,7 @@ const AppHeader = () => {
         >
             <Flex style={{ width: 250, height: 40 }} align={"center"} justify={"center"}>
                         <img className={'logo'}
-                             src={`/logo 3.png`}
+                             src={logo}
                              style={{ width: '100%', height: '100%', objectFit: "contain",marginLeft:'20px' }}
                         />
             </Flex>

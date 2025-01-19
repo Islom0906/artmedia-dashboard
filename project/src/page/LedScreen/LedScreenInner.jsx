@@ -14,7 +14,7 @@ import {useGetByIdQuery} from "../../service/query/Queries";
 import {GoNumber} from "react-icons/go";
 import {CiCalendarDate} from "react-icons/ci";
 import {IoCalendarNumberOutline} from "react-icons/io5";
-
+import videoBanner from '../../assets/Безымянный-012.jpg'
 const { Title , Text } = Typography;
 
 
@@ -288,7 +288,7 @@ const LedScreenInner = () => {
                                 className={'my-card'}
                                 cover={
                                     !isVideoPlaying ?
-                                        <img src={'/Безымянный-012.jpg'} alt={'video image'} style={{width: '100%', height: '300px', objectFit: 'cover'}} onClick={()=>setIsVideoPlaying(true)}/>
+                                        <img src={videoBanner} alt={'video image'} style={{width: '100%', height: '300px', objectFit: 'cover'}} onClick={()=>setIsVideoPlaying(true)}/>
                                         :
                                         <video
                                             autoPlay
