@@ -3,8 +3,9 @@ import Sider from 'antd/es/layout/Sider';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { BsBoxArrowInLeft, BsBoxArrowInRight } from 'react-icons/bs';
-import { HomeOutlined } from '@ant-design/icons';
 import './index.scss';
+import {LuMonitorCog} from "react-icons/lu";
+import {FcStatistics} from "react-icons/fc";
 
 const AppSidebar = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -47,7 +48,7 @@ const AppSidebar = () => {
             >
                 <Menu.SubMenu
                     key="sub1"
-                    icon={<HomeOutlined style={{ color: '#ffffff' }} />}
+                    icon={<FcStatistics style={{ color: '#ffffff' }} />}
                     title="Наружная реклама"
                     style={{ color: '#ffffff' }}
                 >

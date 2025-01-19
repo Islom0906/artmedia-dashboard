@@ -41,9 +41,14 @@ const LedScreenInner = () => {
         isLoading: isLoadingGetByIdStatistics,
     } = useGetByIdQuery(false, "statistics", id, '/location/calculator');
     const addArticle = () => {
-        navigate(`/led-screen/statistics-add?selectID=${getByIdLedScreen?._id}&toHour=${getByIdLedScreen?.toHour}&fromHour=${getByIdLedScreen?.fromHour}`);
-    };
+        if (getByIdLedScreenStatistics?.statistics?._id){
+        navigate(`/led-screen/statistics-add?editId=${getByIdLedScreenStatistics?.statistics?._id}&selectID=${getByIdLedScreen?._id}&toHour=${getByIdLedScreen?.toHour}&fromHour=${getByIdLedScreen?.fromHour}`);
+        }else{
+            navigate(`/led-screen/statistics-add?toHour=${getByIdLedScreen?.toHour}&fromHour=${getByIdLedScreen?.fromHour}&selectID=${getByIdLedScreen?._id}`)
+        }
 
+    };
+    console.log(getByIdLedScreenStatistics?.statistics?._id)
     const showDrawer = () => setVisible(true);
     const hideDrawer = () => setVisible(false);
     const info = useMemo(() => {
@@ -227,9 +232,18 @@ const LedScreenInner = () => {
             <div className="layout-content" >
                 <Row>
                     <Col span={16}>
-                        <Title level={4} style={{marginBottom: 12}}>
+                        <Title level={4} style={{marginTop: 0}}>
                             <FaLocationDot style={{fontSize:'16px'}}/>  {getByIdLedScreen?.address}
                         </Title>
+                    </Col>
+                    <Col span={8}>
+                        <Button
+                            type='primary'
+                            icon={<PlusOutlined/>}
+                            style={{width: '100%'}}
+                            onClick={addArticle}>
+                            Статистика
+                        </Button>
                     </Col>
 
                     <Divider className={'home-divider'}/>
@@ -310,13 +324,7 @@ const LedScreenInner = () => {
                                             <Button onClick={togglePercentage} type={"primary"}>
                                                 {isPercentage ? <GoNumber style={{fontSize:24}} /> : <BsPercent style={{fontSize:24}} />}
                                             </Button>
-                                            <Button
-                                                type='primary'
-                                                icon={<PlusOutlined/>}
-                                                style={{width: '100%'}}
-                                                onClick={addArticle}>
-                                                Статистика
-                                            </Button>
+
                                             <Select
                                                 style={{
                                                     width: '100%',

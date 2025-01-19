@@ -38,11 +38,11 @@ const LedScreenPostEdit = () => {
     const workingDayStatistics =
         !isNaN(fromHourNum) && !isNaN(toHourNum) && fromHourNum > toHourNum
             ? Array.from({ length: fromHourNum - toHourNum }, (_, index) => {
-                const startHour = (6 + index).toString().padStart(2, "0");
-                const endHour = ((6 + index + 1) % 24).toString().padStart(2, "0");
+                const startHour = (7 + index).toString().padStart(2, "0");
+                const endHour = ((7 + index + 1) % 24).toString().padStart(2, "0");
                 return {
                     hour: `${startHour}:00 - ${endHour}:00`,
-                    viewsNumber: 1,
+                    viewsNumber: null,
                 };
             })
             : [];
@@ -125,7 +125,7 @@ const LedScreenPostEdit = () => {
                 url:`${process.env.REACT_APP_API_URL}/${editStatisticsData.pdf?.path}`
             }];
             const edit = {
-                pdf,
+                image:pdf,
                 young: editStatisticsData?.young,
                 middleAge: editStatisticsData?.middleAge,
                 oldAge: editStatisticsData?.oldAge,
@@ -145,6 +145,7 @@ const LedScreenPostEdit = () => {
                 dayOffStatistics:editStatisticsData?.dayOffStatistics
             };
             setFileListProps(pdf)
+            console.log(edit)
             form.setFieldsValue(edit);
         }
     }, [editStatisticsData]);
@@ -251,7 +252,7 @@ const LedScreenPostEdit = () => {
                                 </Card>
                             </Col>
                             <Col span={24}>
-                                <Card size={"small"} title="возрастная диаграмма">
+                                <Card size={"small"} title="Диаграмма типа просмотрщика">
 
                                     <Row gutter={[8 ,10]} >
                                         <Col span={8}>
@@ -304,7 +305,7 @@ const LedScreenPostEdit = () => {
                                 </Card>
                             </Col>
                             <Col span={24}>
-                                <Card size={"small"} title="возрастная диаграмма">
+                                <Card size={"small"} title="Количество просмотров в месяц">
 
                                     <Row gutter={[8 ,10]} >
                                         <Col span={8}>
@@ -352,7 +353,7 @@ const LedScreenPostEdit = () => {
                                 </Card>
                             </Col>
                             <Col span={24}>
-                                <Card size={"small"} title="возрастная диаграмма">
+                                <Card size={"small"} title="Другие">
 
                                     <Row gutter={[8 ,10]} >
                                         <Col span={8}>
