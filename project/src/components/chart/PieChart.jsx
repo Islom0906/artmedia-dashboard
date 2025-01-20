@@ -1,17 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import ReactECharts from 'echarts-for-react';
+import {priceView} from "../../helper";
 
 const PieChart = ({ data, title, subTitle, isPercentage }) => {
     const chartRef = useRef(null);
 
-
-    const totalSum = data.reduce((sum, item) => sum + item.value, 0);
-    const displayData = isPercentage
-        ? data.map((item) => ({
-            ...item,
-            value: ((item.value / totalSum) * 100).toFixed(2),
-        }))
-        : data;
+    const valueFormatter = (value) => {
+        if (value >= 1000000) {
+            return `${(value / 1000000).toFixed(1)}M`;
+        } else if (value >= 1000) {
+            return `${(value / 1000).toFixed(1)}K`;
+        }
+        return value.toString();
+    };
 
     const option = {
         title: {
@@ -35,8 +36,8 @@ const PieChart = ({ data, title, subTitle, isPercentage }) => {
             trigger: 'item',
             formatter: (params) =>
                 isPercentage
-                    ? `${params.name}: ${params.value}% (${params.data.rawValue})`
-                    : `${params.name}: ${params.value}`, // Tooltipda asl qiymatni ham ko'rsatamiz.
+                    ? `${params.name} возраст: ${params.value}%`
+                    : `${params.name} возраст: ${priceView(params.value)}`,
         },
         legend: {
             icon: 'circle',
@@ -60,16 +61,14 @@ const PieChart = ({ data, title, subTitle, isPercentage }) => {
                 label: {
                     show: true,
                     position: 'inside',
-                    formatter: isPercentage ? '{d}%' : '{c}',
+                    formatter: (params) =>
+                        isPercentage ? `${params.value}%` : valueFormatter(params.value),
                     fontSize: 11,
                 },
                 labelLine: {
                     show: false,
                 },
-                data: displayData.map((item) => ({
-                    ...item,
-                    rawValue: item.value,
-                })),
+                data: data,
             },
         ],
     };

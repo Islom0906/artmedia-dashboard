@@ -15,9 +15,10 @@ import {GoNumber} from "react-icons/go";
 import {CiCalendarDate} from "react-icons/ci";
 import {IoCalendarNumberOutline} from "react-icons/io5";
 import videoBanner from '../../assets/Безымянный-012.jpg'
+import {priceView} from "../../../src/helper";
 const { Title , Text } = Typography;
 
-
+// priceView
 
 
 
@@ -105,9 +106,9 @@ const LedScreenInner = () => {
         const a =getByIdLedScreenStatistics?.statistics?.age
 
         const  dataAgeViews= [
-            { value: isPercentage ? a?.youngPercent : a?.young  , name: '0-16 ' },
-            { value: isPercentage ? a?.middleAgePercent : a?.middleAge , name: '17-60 ' },
-            { value: isPercentage ?  a?.oldAgePercent :a?.oldAge, name: '61-100 ' },
+            { value: isPercentage ? a?.youngPercent : a?.young  , name: '0-16 возраст' },
+            { value: isPercentage ? a?.middleAgePercent : a?.middleAge , name: '17-60 возраст' },
+            { value: isPercentage ?  a?.oldAgePercent :a?.oldAge, name: '61-100 возраст' },
         ]
         return dataAgeViews
     } , [getByIdLedScreenStatistics ,isPercentage])
@@ -355,11 +356,10 @@ const LedScreenInner = () => {
 
 
                                         <Title level={3} style={{fontSize:20,marginTop:0, color:'white'}}>
-                                            {getByIdLedScreenStatistics?.statistics?.allViews}
-
+                                            { priceView(getByIdLedScreenStatistics?.statistics?.allViews)}
                                         </Title>
                                         <Title level={3} style={{fontSize:20,marginTop:0, color:'white'}}>
-                                            Нв {getByIdLedScreenStatistics?.statistics?.nightVision}
+                                            Нв { priceView(getByIdLedScreenStatistics?.statistics?.nightVision)}
                                         </Title>
                                     </Card>
                                 </Col>
@@ -371,7 +371,7 @@ const LedScreenInner = () => {
                                 </Col>
                                 <Col xs={24} sm={24} md={12} lg={12} xl={6} >
                                     <Card bordered={false} className="criclebox h-full" style={{height:'100%' }} >
-                                        <PieChart data={AgeViews} Title={'Возраст'} isPercentage={isPercentage} />
+                                        <PieChart data={AgeViews} isPercentage={isPercentage} />
                                     </Card>
                                 </Col>
                                 <Col xs={24} sm={24} md={12} lg={12} xl={6} >
@@ -392,6 +392,8 @@ const LedScreenInner = () => {
                                         <BarChart
                                             dataTime={workingDaysStatisticData?.labels || []}
                                             title={''}
+                                            isDaily={isDaily}
+                                            dailyColor={'#0097c9'}
                                             subTitle={`Рабочий дни / ${getByIdLedScreenStatistics?.statistics?.workingDayMonth} день`}
                                             isPercentage={isPercentage}
                                             barData={workingDaysStatisticData?.values || []}
@@ -406,6 +408,7 @@ const LedScreenInner = () => {
                                             dataTime={offDaysStatisticData?.labels || []}
                                             isPercentage={isPercentage}
                                             isDaily={isDaily}
+                                            dailyColor={'#f0e650'}
                                             subTitle={`Суббота, воскресение и дополнительные выходные дни / ${getByIdLedScreenStatistics?.statistics?.offDayMonth} день`}
                                             barData={offDaysStatisticData?.values || []}
                                             isDailyBarData={offDaysStatisticData?.valuesDaily || []}
@@ -432,10 +435,11 @@ const LedScreenInner = () => {
                                             dataTime={workingDaysStatisticInMyVideoData?.labels || []}
                                             isPercentage={isPercentage}
                                             isDaily={isDaily}
+                                            dailyColor={'#0097c9'}
                                             subTitle={`Рабочий дни / ${getByIdLedScreenStatistics?.statistics?.workingDayMonth} дней`}
                                             barData={workingDaysStatisticInMyVideoData?.values || []}
                                             isDailyBarData={workingDaysStatisticInMyVideoData?.valuesDaily || []}
-                                            footerText={`Все: ${getByIdLedScreenStatistics?.statistics?.allViewsWorkingDayMyVideo}`}
+                                            footerText={`Всего: ${getByIdLedScreenStatistics?.statistics?.allViewsWorkingDayMyVideo}`}
                                         />
                                     </Card>
                                 </Col>
@@ -445,11 +449,12 @@ const LedScreenInner = () => {
                                             isDaily={isDaily}
                                             dataTime={offDaysStatisticInMyVideoData.labels || []}
                                             isPercentage={isPercentage}
+                                            dailyColor={'#f0e650'}
                                             subTitle={`Суббота, воскресение и дополнительные выходные дни
                                            ${getByIdLedScreenStatistics?.statistics?.offDayMonth} дней`}
                                             barData={offDaysStatisticInMyVideoData?.values || []}
                                             isDailyBarData={offDaysStatisticInMyVideoData?.valuesDaily || []}
-                                            footerText={`Все: ${getByIdLedScreenStatistics?.statistics?.allViewsOffDayMyVideo}`}
+                                            footerText={`Всего: ${getByIdLedScreenStatistics?.statistics?.allViewsOffDayMyVideo}`}
                                         />
                                     </Card>
                                 </Col>
@@ -467,7 +472,7 @@ const LedScreenInner = () => {
                                                 <Text style={{color:"white"}}>
                                                     Бюджет:
                                                 </Text>
-                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.price}
+                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {priceView(getByIdLedScreenStatistics?.statistics?.price)}
                                                 </Title>
                                                 <Text style={{color:"white"}}>
                                                     сум /
@@ -478,14 +483,14 @@ const LedScreenInner = () => {
                                                 <Text style={{color:"white"}}>
                                                     OTS:
                                                 </Text>
-                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.allViews}
+                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {priceView(getByIdLedScreenStatistics?.statistics?.allViews)}
                                                 </Title>
                                             </Space>
                                             <Space size={5}>
                                                 <Text style={{color:"white"}}>
                                                     Время трансляции ролика на экране за декабрь:
                                                 </Text>
-                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.monthViewsSeconds}
+                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {priceView(getByIdLedScreenStatistics?.statistics?.monthViewsSeconds)}
                                                 </Title>
                                                 <Text style={{color:"white"}}>
                                                     сек
@@ -495,7 +500,7 @@ const LedScreenInner = () => {
                                                 <Text style={{color:"white"}}>
                                                     Доля просмотров ролика и IYB:
                                                 </Text>
-                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {getByIdLedScreenStatistics?.statistics?.monthViewsMyVideo}
+                                                <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}> {priceView(getByIdLedScreenStatistics?.statistics?.monthViewsMyVideo)}
                                                 </Title>
                                                 <Text style={{color:"white"}}>
                                                     чел
@@ -508,7 +513,7 @@ const LedScreenInner = () => {
                                                     <Text style={{color:"white"}}>
                                                         Сумма одного просмотра:
                                                     </Text>
-                                                    <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}>{getByIdLedScreenStatistics?.statistics?.oneViewsPrice}
+                                                    <Title style={{marginBottom:0  , marginTop:0 ,color:'white'}} level={5}>{priceView(getByIdLedScreenStatistics?.statistics?.oneViewsPrice)}
                                                     </Title>
                                                     <Text style={{color:"white"}}>
                                                         cум
@@ -518,13 +523,13 @@ const LedScreenInner = () => {
                                                     <Text style={{color:"white"}}>
                                                         Cкачать
                                                     </Text>
-                                                    <Space size={"small"} direction={"horizontal"}> <Button type={"primary"}>
-                                                        <a href={`${process.env.REACT_APP_API_URL}/${getByIdLedScreenStatistics?.statistics?.pdf}`} download>
+                                                    <Space size={"small"} direction={"horizontal"}>
+                                                        <Button type={"primary"}  style={{ backgroundColor: '#008CBA' }} >
+                                                        <a href={`${process.env.REACT_APP_API_URL}${getByIdLedScreenStatistics?.statistics?.pdf?.path}`} download>
                                                             <FaFilePdf  />
                                                         </a>
-
                                                     </Button >
-                                                        <Button type={"primary"} disabled={true}>
+                                                        <Button  style={{ backgroundColor:"#f44336"}} disabled={true}>
                                                                 <RiFileExcel2Fill style={{color:"white"}} />
                                                         </Button>
                                                     </Space>

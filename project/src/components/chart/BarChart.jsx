@@ -22,7 +22,7 @@ const BarChart = ({
                 {
                     data: isDailyBarData,
                     type: "bar",
-                    itemStyle: {color: '#12895f' },
+                    itemStyle: {color: dailyColor },
                     label: {
                         show: true,
                         position: "inside",
@@ -47,7 +47,7 @@ const BarChart = ({
                 {
                     data: barData,
                     type: "bar",
-                    itemStyle: { color: '#12895f' },
+                    itemStyle: { color: dailyColor },
                     label: {
                         show: true,
                         position: "inside",
@@ -86,7 +86,7 @@ const BarChart = ({
                 axisLabel: { rotate: 50, fontSize: 10 },
             },
             yAxis: {
-                show: true,
+                show: false,
                 type: "value",
                 axisLabel: {
                     formatter: (value) =>

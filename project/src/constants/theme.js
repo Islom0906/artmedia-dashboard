@@ -34,6 +34,8 @@ export const configLight = {
     mainBg:"#F4F6F3",
     Button: {
         colorPrimary: "rgb(18, 137, 95)",
+        colorRed: "#f44336",
+        colorInfo:"#008CBA",
         primaryColor: '#ffffff',
         defaultBg: "transparent",
         colorPrimaryHover: "rgba(117,188,51,0.8)"

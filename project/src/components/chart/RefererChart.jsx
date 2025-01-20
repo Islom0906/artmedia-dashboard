@@ -1,12 +1,20 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import * as echarts from "echarts";
+import {priceView} from "../../helper";
 
 const RefererChart = ({ data, isPercentage, title}) => {
     const chartRef = useRef(null);
 
     useEffect(() => {
         const chartInstance = echarts.init(chartRef.current);
-
+        const valueFormatter = (value) => {
+            if (value >= 1000000) {
+                return `${(value / 1000000).toFixed(1)}M`;
+            } else if (value >= 1000) {
+                return `${(value / 1000).toFixed(1)}K`;
+            }
+            return value.toString();
+        };
         const option = {
             title: {
                 text: title,
@@ -22,9 +30,7 @@ const RefererChart = ({ data, isPercentage, title}) => {
                 formatter: (params) =>
                     isPercentage
                         ? `${params.value}%`
-                        : params.value
-                            .toLocaleString("ru-RU")
-                            .replace(",", " "),
+                        : priceView(params.value),
             },
             legend: {
                 icon: "circle",
@@ -47,13 +53,16 @@ const RefererChart = ({ data, isPercentage, title}) => {
                     label: {
                         show: true,
                         position: 'inside',
+                        rotate: isPercentage? 0 :100,
+                        alignTo: "edge",
+                        bleedMargin: 10,
                         formatter: (params) =>
                             isPercentage
                                 ? `${params.value}%`
-                                : params.value
-                                    .toLocaleString("ru-RU")
-                                    .replace(",", " "),
+                                :valueFormatter(  params.value)
+                              ,
                         fontSize: 11,
+
                     },
                     labelLine: {
                         show: false,
