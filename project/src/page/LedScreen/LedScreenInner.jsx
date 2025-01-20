@@ -49,7 +49,6 @@ const LedScreenInner = () => {
         }
 
     };
-    console.log(getByIdLedScreenStatistics?.statistics?._id)
     const showDrawer = () => setVisible(true);
     const hideDrawer = () => setVisible(false);
     const info = useMemo(() => {
@@ -66,7 +65,7 @@ const LedScreenInner = () => {
             },
             {
                 today: " Bремя трансляции (в день)",
-                title: getByIdLedScreen?.toHour - getByIdLedScreen?.fromHour,
+                title: `${getByIdLedScreen?.toHour} - ${getByIdLedScreen?.fromHour}`,
                 icon: <IoMdTime style={{fontSize:24 , color:"white"}} />,
             },
             {
@@ -85,7 +84,6 @@ const LedScreenInner = () => {
         }
     }, []);
 
-    console.log(isDaily)
 
 
 

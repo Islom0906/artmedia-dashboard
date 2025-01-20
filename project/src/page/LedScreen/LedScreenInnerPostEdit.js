@@ -145,7 +145,6 @@ const LedScreenPostEdit = () => {
                 dayOffStatistics:editStatisticsData?.dayOffStatistics
             };
             setFileListProps(pdf)
-            console.log(edit)
             form.setFieldsValue(edit);
         }
     }, [editStatisticsData]);

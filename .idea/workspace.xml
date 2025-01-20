@@ -4,22 +4,75 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bed335a7-3286-4e74-985d-0b59b4325df5" name="Changes" comment="kamchiliklar togirlandi" />
+    <list default="true" id="aec4ce1c-3b0f-44f0-92b9-16218c880eaa" name="Changes" comment="stucture full">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInner.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInnerPostEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/LedScreen/LedScreenInnerPostEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/page/auth/AuthProvider/AuthProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/page/auth/AuthProvider/AuthProvider.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "main",
-    "ts.external.directory.path": "/home/islom/.local/share/JetBrains/Toolbox/apps/webstorm-2/plugins/javascript-plugin/jsLanguageServicesImpl/external"
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "BoburBerdiev"
   }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Islom0906/artmedia.git",
+    "accountId": "9b532132-feb6-4737-9419-d7c87beeabb1"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2rsnwhtZAEbMe6YcE3Vj9kwotzK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/PROJECT_ALL/REACT/media-city/project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PROJECT_ALL\REACT\media-city\project" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="kamchiliklar togirlandi">
       <option name="closed" value="true" />
@@ -29,12 +82,40 @@
       <option name="project" value="LOCAL" />
       <updated>1737251779669</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aec4ce1c-3b0f-44f0-92b9-16218c880eaa" name="Changes" comment="stucture full" />
+      <created>1737356896945</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737356896945</updated>
+      <workItem from="1737356899185" duration="6291000" />
+    </task>
+    <task id="LOCAL-00002" summary="stucture full">
+      <option name="closed" value="true" />
+      <created>1737361589538</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737361589538</updated>
+    </task>
+    <task id="LOCAL-00003" summary="stucture full">
+      <option name="closed" value="true" />
+      <created>1737361942058</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737361942059</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="checkformat togirlandi" />
     <MESSAGE value="kamchiliklar togirlandi" />
-    <option name="LAST_COMMIT_MESSAGE" value="kamchiliklar togirlandi" />
+    <MESSAGE value="stucture full" />
+    <option name="LAST_COMMIT_MESSAGE" value="stucture full" />
   </component>
 </project>
